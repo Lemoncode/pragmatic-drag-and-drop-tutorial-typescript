@@ -1,14 +1,6 @@
 import { PieceRecord, Coord } from "./board.model";
 import { isEqualCoord, pieceLookup } from "./board.utils";
-import styled from "@emotion/styled";
-
-const StyledDiv = styled.div({
-  width: "100%",
-  height: "100%",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-});
+import styles from "./squares.module.css";
 
 export function renderSquares(pieces: PieceRecord[]) {
   const squares = [];
@@ -21,11 +13,15 @@ export function renderSquares(pieces: PieceRecord[]) {
       );
 
       const isDark = (row + col) % 2 === 1;
+      const squareClass = isDark ? styles.dark : styles.light;
 
       squares.push(
-        <StyledDiv style={{ backgroundColor: isDark ? "lightgrey" : "white" }}>
+        <div
+          className={`${styles.square} ${squareClass}`}
+          key={`${row}-${col}`}
+        >
           {piece && pieceLookup[piece.type]()}
-        </StyledDiv>
+        </div>
       );
     }
   }
