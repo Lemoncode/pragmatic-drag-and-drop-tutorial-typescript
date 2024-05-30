@@ -1,6 +1,6 @@
-import { PieceProps } from "./board.model";
-import king from "../assets/king.png";
-import pawn from "../assets/pawn.png";
+import { PieceProps } from "../board.model";
+import king from "../../assets/king.png";
+import pawn from "../../assets/pawn.png";
 import styles from "./pieces.module.css";
 
 function Piece({ image, alt }: PieceProps) {

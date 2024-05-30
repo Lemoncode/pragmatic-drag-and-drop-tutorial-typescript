@@ -1,5 +1,5 @@
 import { PieceRecord } from "./board.model";
-import { renderSquares } from "./squares.component";
+import { renderSquares } from "./components";
 import styles from "./board.module.css";
 
 export function Chessboard() {

@@ -1,5 +1,5 @@
-import { PieceRecord, Coord } from "./board.model";
-import { isEqualCoord, pieceLookup } from "./board.utils";
+import { PieceRecord, Coord } from "../board.model";
+import { isEqualCoord, pieceLookup } from "../board.utils";
 import styles from "./squares.module.css";
 
 export function renderSquares(pieces: PieceRecord[]) {
