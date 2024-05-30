@@ -359,5 +359,48 @@ export function renderSquares(pieces: PieceRecord[]) {
   }
   return squares;
 }
+```
+
+We can also make use of the data we attached to the draggable to prevent interractions with the square it is being dragged from. This makes use of the canDrop argument on dropTargetForElements.
+
+_./src/board/components/square.component.tsx_
+
+```diff
+- import { canMove, isCoord, isEqualCoord } from "../board.utils";
++ import { canMove, isCoord, isEqualCoord, isPieceType } from "../board.utils";
+
+// (...)
+
+    return dropTargetForElements({
+      element: el,
++      canDrop: ({ source }) => {
++        if (!isCoord(source.data.location)) {
++          return false;
++        }
++
++        return !isEqualCoord(source.data.location, location);
++      },
+      onDragEnter: ({ source }) => {
+        // source is the piece being dragged over the drop target
+        if (
+          // type guards
+          !isCoord(source.data.location) ||
+          !isPieceType(source.data.pieceType)
+        ) {
+          return;
+        }
+
+        if (
+          canMove(source.data.location, location, source.data.pieceType, pieces)
+        ) {
+          setState("validMove");
+        } else {
+          setState("invalidMove");
+        }
+      },
+      onDragLeave: () => setState("idle"),
+      onDrop: () => setState("idle"),
+    });
+  }, []);
 
 ```

@@ -1,9 +1,9 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import invariant from "tiny-invariant";
-import { Coord, PieceRecord, PieceType } from "../board.model";
+import { Coord, PieceRecord } from "../board.model";
 import styles from "./square.module.css";
 import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
-import { canMove, isCoord, isPieceType } from "../board.utils";
+import { canMove, isCoord, isEqualCoord, isPieceType } from "../board.utils";
 
 type HoveredState = "idle" | "validMove" | "invalidMove";
 
@@ -32,6 +32,13 @@ export function Square({ location, children, pieces }: SquareProps) {
 
     return dropTargetForElements({
       element: el,
+      canDrop: ({ source }) => {
+        if (!isCoord(source.data.location)) {
+          return false;
+        }
+
+        return !isEqualCoord(source.data.location, location);
+      },
       onDragEnter: ({ source }) => {
         // source is the piece being dragged over the drop target
         if (
