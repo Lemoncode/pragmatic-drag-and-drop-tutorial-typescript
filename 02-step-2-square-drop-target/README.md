@@ -402,5 +402,6 @@ _./src/board/components/square.component.tsx_
       onDrop: () => setState("idle"),
     });
   }, []);
-
 ```
+
+
