@@ -1,6 +1,6 @@
 import { PieceProps } from "./board.model";
-import king from "/king.png";
-import pawn from "/pawn.png";
+import king from "../assets/king.png";
+import pawn from "../assets/pawn.png";
 import styled from "@emotion/styled";
 
 const StyledImg = styled.img`
