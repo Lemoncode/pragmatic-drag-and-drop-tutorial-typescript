@@ -65,3 +65,5 @@ function Piece({ image, alt }: PieceProps) {
   return <img css={imageStyles} src={image} alt={alt} ref={ref} />;
 }
 ```
+
+Now you can drag the pieces around the board (but not drop... next step :P)).
