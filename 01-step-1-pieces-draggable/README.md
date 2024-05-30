@@ -66,4 +66,32 @@ function Piece({ image, alt }: PieceProps) {
 }
 ```
 
-Now you can drag the pieces around the board (but not drop... next step :P)).
+Although the piece can now be dragged around, it doesn't feel as though the piece is being 'picked up', as the piece stays in place while being dragged.
+
+To make the piece fade while being dragged we can use the onDragStart and onDrop arguments within draggable to set state. We can then use this state to toggle css within the style prop to reduce the opacity.
+
+_./src/board/components/pieces.component.tsx_
+
+```diff
+- import { useEffect, useRef } from "react";
++ import { useEffect, useRef, useState } from "react";
+
+function Piece({ image, alt }: PieceProps) {
++ const [dragging, setDragging] = useState<boolean>(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    invariant(el);
+
+    return draggable({
+      element: el,
++      onDragStart: () => setDragging(true),
++      onDrop: () => setDragging(false),
+    });
+  }, []);
+
+-  return <img css={imageStyles} src={image} alt={alt} ref={ref} />;
++ return <img css={imageStyles} src={image} alt={alt} ref={ref} style={{ opacity: dragging ? 0.4 : 1 }} />;
+}
+```

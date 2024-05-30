@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { draggable } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
 import { PieceProps } from "../board.model";
 import invariant from "tiny-invariant";
@@ -7,6 +7,7 @@ import pawn from "../../assets/pawn.png";
 import styles from "./pieces.module.css";
 
 function Piece({ image, alt }: PieceProps) {
+  const [dragging, setDragging] = useState<boolean>(false);
   const ref = useRef(null);
 
   useEffect(() => {
@@ -15,6 +16,8 @@ function Piece({ image, alt }: PieceProps) {
 
     return draggable({
       element: el,
+      onDragStart: () => setDragging(true),
+      onDrop: () => setDragging(false),
     });
   }, []);
 
@@ -23,8 +26,8 @@ function Piece({ image, alt }: PieceProps) {
       className={styles.piece}
       src={image}
       alt={alt}
-      draggable="false"
       ref={ref}
+      style={{ opacity: dragging ? 0.4 : 1 }}
     />
   ); // draggable set to false to prevent dragging of the images
 }
