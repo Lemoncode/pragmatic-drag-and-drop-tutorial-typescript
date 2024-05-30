@@ -1,0 +1,17 @@
+/* Square.module.css */
+.square {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .dark {
+    background-color: lightgrey;
+  }
+  
+  .light {
+    background-color: white;
+  }
+  
