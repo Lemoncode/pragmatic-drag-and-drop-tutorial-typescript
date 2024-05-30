@@ -1,6 +1,6 @@
 import { PieceRecord, Coord } from "../board.model";
 import { isEqualCoord, pieceLookup } from "../board.utils";
-import styles from "./squares.module.css";
+import { Square } from "./square.component";
 
 export function renderSquares(pieces: PieceRecord[]) {
   const squares = [];
@@ -12,16 +12,10 @@ export function renderSquares(pieces: PieceRecord[]) {
         isEqualCoord(piece.location, squareCoord)
       );
 
-      const isDark = (row + col) % 2 === 1;
-      const squareClass = isDark ? styles.dark : styles.light;
-
       squares.push(
-        <div
-          className={`${styles.square} ${squareClass}`}
-          key={`${row}-${col}`}
-        >
+        <Square location={[row, col]} key={`${row}-${col}`}>
           {piece && pieceLookup[piece.type]()}
-        </div>
+        </Square>
       );
     }
   }

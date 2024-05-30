@@ -1,97 +1,99 @@
-# Step 1: Making the pieces draggable
+# Step 2: Making the squares drop targets
 
-The first step to make our chess board functional is to allow the pieces to be dragged around.
+Now that we have draggable pieces we want the squares on the board to act as areas that can be 'dropped' onto. For this we will use the dropTargetForElements function from Pragmatic drag and drop.
 
-Let's install the `pragmatic-drag-and-drop` package:
+Drop targets are elements that a draggable element can be dropped on.
 
-```bash
-npm install pragmatic-drag-and-drop
-```
+Creating a drop target follows the same technique as for draggable. Let's abstract out the board's squares, which were previously divs, into their own component.
 
-And let's install `tiny-invariant`:
+_./src/board/components/square.component.css_
 
-```bash
-npm install tiny-invariant
-```
-
-Pragmatic drag and drop provides a draggable function that you attach to an element to enable the draggable behavior. When using React this is done in an effect:
-
-_./src/board/components/pieces.component.tsx_
-
-```diff
-+ import { useEffect, useRef } from "react";
-+ import { draggable } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
-+ import invariant from "tiny-invariant";
-import { PieceProps } from "../board.model";
-import king from "../../assets/king.png";
-import pawn from "../../assets/pawn.png";
-import styles from "./pieces.module.css";
-
-function Piece({ image, alt }: PieceProps) {
-+ const ref = useRef(null);
-
-+ useEffect(() => {
-+   const el = ref.current;
-+   // Add this to avoid typescript in strict mode complaining about null
-+   // on draggable({ element: el }); call
-+   invariant(el);
-+
-+   return draggable({
-+     element: el,
-+   });
-+ }, []);
-
-  return (
-    <img className={styles.piece} src={image} alt={alt} draggable="false"
-+    ref={ref}
-    />
-  ); // draggable set to false to prevent dragging of the images
+```css
+.square {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 ```
+
+_./src/board/components/square.component.tsx_
 
 ```tsx
-function Piece({ image, alt }: PieceProps) {
+import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
+import { ReactNode, useEffect, useRef, useState } from "react";
+import invariant from "tiny-invariant";
+import { Coord } from "../board.model";
+import styles from "./square.module.css";
+
+function getColor(isDraggedOver: boolean, isDark: boolean): string {
+  if (isDraggedOver) {
+    return "skyblue";
+  }
+  return isDark ? "lightgrey" : "white";
+}
+
+interface SquareProps {
+  location: Coord;
+  children: ReactNode;
+}
+
+export function Square({ location, children }: SquareProps) {
   const ref = useRef(null);
+  const [isDraggedOver, setIsDraggedOver] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     invariant(el);
 
-    return draggable({
+    return dropTargetForElements({
       element: el,
+      onDragEnter: () => setIsDraggedOver(true),
+      onDragLeave: () => setIsDraggedOver(false),
+      onDrop: () => setIsDraggedOver(false),
     });
   }, []);
 
-  return <img css={imageStyles} src={image} alt={alt} ref={ref} />;
+  const isDark = (location[0] + location[1]) % 2 === 1;
+
+  return (
+    <div
+      className={styles.square}
+      style={{ backgroundColor: getColor(isDraggedOver, isDark) }}
+      ref={ref}
+    >
+      {children}
+    </div>
+  );
 }
 ```
 
-Although the piece can now be dragged around, it doesn't feel as though the piece is being 'picked up', as the piece stays in place while being dragged.
-
-To make the piece fade while being dragged we can use the onDragStart and onDrop arguments within draggable to set state. We can then use this state to toggle css within the style prop to reduce the opacity.
-
-_./src/board/components/pieces.component.tsx_
+_./src/board/components/squares.component.tsx_
 
 ```diff
-- import { useEffect, useRef } from "react";
-+ import { useEffect, useRef, useState } from "react";
-
-function Piece({ image, alt }: PieceProps) {
-+ const [dragging, setDragging] = useState<boolean>(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    invariant(el);
-
-    return draggable({
-      element: el,
-+      onDragStart: () => setDragging(true),
-+      onDrop: () => setDragging(false),
-    });
-  }, []);
-
--  return <img css={imageStyles} src={image} alt={alt} ref={ref} />;
-+ return <img css={imageStyles} src={image} alt={alt} ref={ref} style={{ opacity: dragging ? 0.4 : 1 }} />;
-}
+import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/dist/types/adapter/element-adapter";
+import { ReactNode, useEffect, useRef, useState } from "react";
+import invariant from "tiny-invariant";
+import { Coord } from "../board.model";
++ import { Square } from "./square.component";
+- import styles from "./Square.module.css";
 ```
+
+```diff
+-      const isDark = (row + col) % 2 === 1;
+-      const squareClass = isDark ? styles.dark : styles.light;
+
+      squares.push(
+-        <div
+-          className={`${styles.square} ${squareClass}`}
+-          key={`${row}-${col}`}
+-        >
++        <Square location={[row, col]} key={`${row}-${col}`}>
+          {piece && pieceLookup[piece.type]()}
+-        </div>
++        </Square>
+      );
+```
+
+
