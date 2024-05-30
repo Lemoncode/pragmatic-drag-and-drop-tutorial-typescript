@@ -1,30 +1,22 @@
-# React + TypeScript + Vite
+# Step 1: Making the pieces draggable
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The first step to make our chess board functional is to allow the pieces to be dragged around.
 
-Currently, two official plugins are available:
+Pragmatic drag and drop provides a draggable function that you attach to an element to enable the draggable behavior. When using React this is done in an effect:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```tsx
+function Piece({ image, alt }: PieceProps) {
+  const ref = useRef(null);
 
-## Expanding the ESLint configuration
+  useEffect(() => {
+    const el = ref.current;
+    invariant(el);
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+    return draggable({
+      element: el,
+    });
+  }, []);
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
+  return <img css={imageStyles} src={image} alt={alt} ref={ref} />;
 }
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
