@@ -1,12 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { draggable } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
-import { PieceProps } from "../board.model";
 import invariant from "tiny-invariant";
 import king from "../../assets/king.png";
 import pawn from "../../assets/pawn.png";
 import styles from "./pieces.module.css";
+import { Coord } from "../board.model";
 
-function Piece({ image, alt }: PieceProps) {
+export type PieceProps = {
+  image: string;
+  alt: string;
+  pieceType: string;
+  location: Coord;
+};
+
+function Piece({ image, alt, pieceType, location }: PieceProps) {
   const [dragging, setDragging] = useState<boolean>(false);
   const ref = useRef(null);
 
@@ -16,6 +23,7 @@ function Piece({ image, alt }: PieceProps) {
 
     return draggable({
       element: el,
+      getInitialData: () => ({ location, pieceType }),
       onDragStart: () => setDragging(true),
       onDrop: () => setDragging(false),
     });
@@ -32,10 +40,18 @@ function Piece({ image, alt }: PieceProps) {
   ); // draggable set to false to prevent dragging of the images
 }
 
-export function King() {
-  return <Piece image={king} alt="King" />;
+interface KingProps {
+  location: Coord;
 }
 
-export function Pawn() {
-  return <Piece image={pawn} alt="Pawn" />;
+export function King({ location }: KingProps) {
+  return <Piece image={king} alt="King" pieceType="king" location={location} />;
+}
+
+interface PawnProps {
+  location: Coord;
+}
+
+export function Pawn({ location }: PawnProps) {
+  return <Piece image={pawn} alt="Pawn" pieceType="pawn" location={location} />;
 }

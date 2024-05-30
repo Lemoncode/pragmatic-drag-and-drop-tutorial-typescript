@@ -13,8 +13,8 @@ export function renderSquares(pieces: PieceRecord[]) {
       );
 
       squares.push(
-        <Square location={[row, col]} key={`${row}-${col}`}>
-          {piece && pieceLookup[piece.type]()}
+        <Square location={[row, col]} key={`${row}-${col}`} pieces={pieces}>
+          {piece && pieceLookup[piece.type]({ location: [row, col] })}
         </Square>
       );
     }
