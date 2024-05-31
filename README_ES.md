@@ -1,35 +1,37 @@
 # 🧩 Ejemplos de Pragmatic Drag & Drop
 
-¡Bienvenido al repositorio de Ejemplos de Pragmatic Drag & Drop! Este proyecto tiene como objetivo simplificar y mejorar la experiencia de aprendizaje para los desarrolladores que exploran la biblioteca [Pragmatic Drag & Drop](https://github.com/atlassian/pragmatic-drag-and-drop) de Atlassian.
+¡Bienvenido al repositorio de Ejemplos de Pragmatic Drag & Drop!
+
+El objetivo de este proyecto, es el de mejorar la guía de ejemplos de [Pragmatic Drag & Drop](https://github.com/atlassian/pragmatic-drag-and-drop) y que te permita aprender a manejarte con este librería de una forma más sencilla y rápida.
 
 - 🇬🇧: [Guia en ingles](https://github.com/Lemoncode/pragmatic-drag-and-drop-tutorial-typescript/blob/main/README.md)
 
 ## 📝 Descripción general
 
-La biblioteca Pragmatic Drag & Drop de Atlassian es una herramienta poderosa para implementar funcionalidad de arrastrar y soltar en aplicaciones web. En su [sección de tutoriales](https://atlassian.design/components/pragmatic-drag-and-drop/tutorial), Atlassian proporciona ejemplos interesantes utilizando un tablero de ajedrez para explicar los conceptos básicos de arrastrar y soltar.
+Pragmatic Drag & Drop de Atlassian es una librería potente para incorporar funcionalidad de arrastrar y soltar en tu aplicacione web. En su [sección de tutoriales](https://atlassian.design/components/pragmatic-drag-and-drop/tutorial), Atlassian proporciona ejemplos interesantes utilizando un tablero de ajedrez para explicar los conceptos básicos de arrastrar y soltar.
 
 Sin embargo, estos ejemplos tienen algunas desventajas:
 
 - 📄 El código es un poco difícil de seguir porque todo está en un solo archivo.
-- 💄 Los ejemplos usan la biblioteca Emotion para CSS, lo que puede ser una distracción debido a las dependencias adicionales.
+- 💄 Los ejemplos usan la librería Emotion para CSS, lo que puede ser una distracción debido a que se mete ruido con dependencias adicionales.
 - 🛠️ Si descargas el código desde CodeSandbox para ejecutarlo localmente, puedes encontrar problemas durante la instalación y ejecución debido a conflictos de versiones.
 
 ## 🔧 ¿Qué hemos hecho?
 
-Para abordar estos problemas, hemos:
+Para eliminar estos problemas, hemos:
 
 - 🧹 Simplificado el ejemplo eliminando dependencias innecesarias, como Emotion, y usando CSS simple en su lugar.
 - 📂 Organizado el proyecto en carpetas y archivos para hacer el código más modular y fácil de entender.
 - 📚 Creado guías paso a paso en formato markdown para cada ejemplo, permitiéndote reproducir los ejemplos fácilmente.
+- 🇪🇸 Traducido las guías al español para que puedas seguir los ejemplos en tu idioma nativo.
 
-Esperamos que estas mejoras hagan más fácil seguir el tutorial y aprender cómo funciona esta fantástica biblioteca.
+Esperamos que estas mejoras te hagan más fácil seguir el tutorial y pues aprender mejor cómo funciona esta fantástica librería.
 
-## 🔮 Mejoras futuras
+## 🔮 Mejoras a futuro.
 
-- Se agregarán explicaciones adicionales y detalles para mejorar aún más la experiencia de aprendizaje.
 - Añadir más ejemplos ampliando el tutorial actual.
 
-## 🛠️ Para comenzar
+## 🛠️ Como arrancarte
 
 Para comenzar con los ejemplos, clona este repositorio y sigue las instrucciones proporcionadas en las respectivas guías markdown.
 
@@ -65,7 +67,7 @@ https://github.com/Lemoncode/pragmatic-drag-and-drop-tutorial-typescript/blob/ma
 
 Sigue las guías paso a paso en el directorio de guías para cada ejemplo.
 
-## 🤝 Contribuyendo
+## 🤝 Como contribuir al proyecto
 
 ¡Las contribuciones son bienvenidas! Si tienes alguna mejora o nuevos ejemplos para agregar, no dudes en abrir una pull request.
 
@@ -75,6 +77,6 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE
 
 ---
 
-¡Esperamos que encuentres estos ejemplos útiles y disfrutes aprendiendo a usar la biblioteca Pragmatic Drag & Drop!
+Esperamos que estos ejemplos y guías te sean útiles y puedes poner al día con esta librería tan buena.
 
-¡Feliz desarrollo!
+¡ A por ello ! :)
