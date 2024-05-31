@@ -4,7 +4,7 @@ This project is based on the tutorial for Pragmatic Drag and Drop from Atlassian
 
 In this project:
 
-- We have removed dependencies (instead of using emotionm, just use plain css).
+- We have removed dependencies (instead of using emotion, just use plain css).
 - We have structured the project in a way that is easy to understand and extend.
 - We have added step by step guides to reproduce the tutorial.
 
@@ -26,7 +26,7 @@ Now you can open your browser and go to `http://localhost:5173` to see the proje
 
 And starting building the next step by following the guide located in:
 
-https://github.com/Lemoncode/pragamatic-drag-and-drop-tutorial-typescript/blob/main/01-step-1-pieces-draggable/README.md
+https://github.com/Lemoncode/pragmatic-drag-and-drop-tutorial-typescript/blob/main/01-step-1-pieces-draggable/README.md
 
 Follow the step-by-step guides in the guides directory for each example.
 
