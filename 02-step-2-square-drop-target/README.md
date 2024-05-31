@@ -6,7 +6,7 @@ Drop targets are elements that a draggable element can be dropped on.
 
 Creating a drop target follows the same technique as for draggable. Let's abstract out the board's squares, which were previously divs, into their own component.
 
-_./src/board/components/square.component.css_
+_./src/board/components/square.module.css_
 
 ```css
 .square {
@@ -131,15 +131,15 @@ export type PieceProps = {
 +  location: Coord;
 + }
 
++ interface PawnProps {
++  location: Coord;
++ }
+
 - export function King() {
 + export function King({ location }: PawnProps) {
 -  return <Piece image={king} alt="King" />;
 +  return <Piece image={king} alt="King" pieceType="king" location={location}/>;
 }
-
-+ interface PawnProps {
-+  location: Coord;
-+ }
 
 - export function Pawn() {
 + export function Pawn({ location }: PawnProps) {
@@ -238,13 +238,14 @@ Let's go to the square an use this function to calculate if we are dropping the 
 _./src/board/components/square.component.tsx_
 
 ```diff
+import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import invariant from "tiny-invariant";
 - import { Coord } from "../board.model";
 + import { Coord, PieceRecord, PieceType } from "../board.model";
 import styles from "./square.module.css";
-import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
-+ import { canMove } from "../board.utils";
++ import { canMove, isCoord, isPieceType } from "../board.utils";
+
 ```
 
 ```diff
@@ -364,7 +365,7 @@ We can also make use of the data we attached to the draggable to prevent interra
 _./src/board/components/square.component.tsx_
 
 ```diff
-- import { canMove, isCoord, isEqualCoord } from "../board.utils";
+- import { canMove, isCoord, isPieceType } from "../board.utils";
 + import { canMove, isCoord, isEqualCoord, isPieceType } from "../board.utils";
 
 // (...)
