@@ -73,7 +73,7 @@ function Piece({ image, alt }: PieceProps) {
     });
   }, []);
 
-  return <img css={imageStyles} src={image} alt={alt} ref={ref} />;
+  return <img className={styles.piece} src={image} alt={alt} ref={ref} />;
 }
 ```
 
@@ -102,7 +102,7 @@ function Piece({ image, alt }: PieceProps) {
     });
   }, []);
 
--  return <img css={imageStyles} src={image} alt={alt} ref={ref} />;
-+ return <img css={imageStyles} src={image} alt={alt} ref={ref} style={{ opacity: dragging ? 0.4 : 1 }} />;
+-  return <img className={styles.piece} src={image} alt={alt} ref={ref} />;
++ return <img className={styles.piece} src={image} alt={alt} ref={ref} style={{ opacity: dragging ? 0.4 : 1 }} />;
 }
 ```
