@@ -35,7 +35,7 @@ To get started with the examples, clone this repository and follow the instructi
 Clone the repo
 
 ```sh
-git clone https://github.com/Lemoncode/pragamatic-drag-and-drop-tutorial-typescript.git
+git clone https://github.com/Lemoncode/pragmatic-drag-and-drop-tutorial-typescript.git
 ```
 
 Now you can for instance open example `00-starter-code`
@@ -60,7 +60,7 @@ Now you can open your browser and go to `http://localhost:5173` to see the proje
 
 And starting building the next step by following the guide located in:
 
-https://github.com/Lemoncode/pragamatic-drag-and-drop-tutorial-typescript/blob/main/01-step-1-pieces-draggable/README.md
+https://github.com/Lemoncode/pragmatic-drag-and-drop-tutorial-typescript/blob/main/01-step-1-pieces-draggable/README.md
 
 Follow the step-by-step guides in the guides directory for each example.
 
