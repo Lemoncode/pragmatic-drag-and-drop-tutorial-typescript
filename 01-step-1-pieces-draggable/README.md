@@ -5,7 +5,7 @@ The first step to make our chess board functional is to allow the pieces to be d
 Let's install the `pragmatic-drag-and-drop` package:
 
 ```bash
-npm install pragmatic-drag-and-drop
+npm install @atlaskit/pragmatic-drag-and-drop
 ```
 
 And let's install `tiny-invariant`:
