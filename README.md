@@ -68,7 +68,7 @@ Follow the step-by-step guides in the guides directory for each example.
 
 We welcome contributions! If you have any improvements or new examples to add, please feel free to open a pull request.
 
-## 📜 License
+## 📜 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
