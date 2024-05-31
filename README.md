@@ -56,6 +56,8 @@ Run the project
 npm run dev
 ```
 
+Now you can open your browser and go to `http://localhost:5173` to see the project.
+
 And starting building the next step by following the guide located in:
 
 https://github.com/Lemoncode/pragamatic-drag-and-drop-tutorial-typescript/blob/main/01-step-1-pieces-draggable/README.md
