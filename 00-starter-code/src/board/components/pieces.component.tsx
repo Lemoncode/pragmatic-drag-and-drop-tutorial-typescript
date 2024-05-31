@@ -1,7 +1,11 @@
-import { PieceProps } from "../board.model";
 import king from "../../assets/king.png";
 import pawn from "../../assets/pawn.png";
 import styles from "./pieces.module.css";
+
+export type PieceProps = {
+  image: string;
+  alt: string;
+};
 
 function Piece({ image, alt }: PieceProps) {
   return (

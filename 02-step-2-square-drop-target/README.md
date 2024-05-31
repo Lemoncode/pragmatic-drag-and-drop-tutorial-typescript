@@ -100,8 +100,6 @@ To take this a step further we can color the square green when a piece is eligib
 
 To achieve this we first use the getInitialData argument on draggable to surface the piece type and starting location of the dragging piece.
 
-> TODO: Fix this PieceProps was in model by mistake should be on Piece component file
-
 _./src/board/components/piece.component.tsx_
 
 ```diff
@@ -403,5 +401,3 @@ _./src/board/components/square.component.tsx_
     });
   }, []);
 ```
-
-

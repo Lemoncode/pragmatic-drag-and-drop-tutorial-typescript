@@ -7,7 +7,4 @@ export type PieceRecord = {
 
 export type PieceType = "king" | "pawn";
 
-export type PieceProps = {
-  image: string;
-  alt: string;
-};
+
