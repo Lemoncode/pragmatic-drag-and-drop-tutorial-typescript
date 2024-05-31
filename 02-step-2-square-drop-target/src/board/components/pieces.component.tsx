@@ -21,12 +21,16 @@ function Piece({ image, alt, pieceType, location }: PieceProps) {
     const el = ref.current;
     invariant(el);
 
-    return draggable({
+     
+
+    const cleanup = draggable({
       element: el,
       getInitialData: () => ({ location, pieceType }),
       onDragStart: () => setDragging(true),
       onDrop: () => setDragging(false),
     });
+
+    return cleanup;
   }, []);
 
   return (
