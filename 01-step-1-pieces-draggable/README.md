@@ -14,6 +14,12 @@ And let's install `tiny-invariant`:
 npm install tiny-invariant
 ```
 
+Let's run the project
+
+```bash
+npm run dev
+```
+
 Pragmatic drag and drop provides a draggable function that you attach to an element to enable the draggable behavior. When using React this is done in an effect:
 
 _./src/board/components/pieces.component.tsx_

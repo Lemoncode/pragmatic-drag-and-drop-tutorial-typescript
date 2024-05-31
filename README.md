@@ -1,14 +1,14 @@
-#  🧩 Pragmatic Drag & Drop Examples
+# 🧩 Pragmatic Drag & Drop Examples
 
 Welcome to the Pragmatic Drag & Drop Examples repository! This project aims to simplify and enhance the learning experience for developers exploring the [Pragmatic Drag & Drop](https://github.com/atlassian/pragmatic-drag-and-drop) library by Atlassian.
 
-##  📝 Overview
+## 📝 Overview
 
 The Pragmatic Drag & Drop library by Atlassian is a powerful tool for implementing drag-and-drop functionality in web applications. In their [tutorial section](https://atlassian.design/components/pragmatic-drag-and-drop/tutorial), Atlassian provides interesting examples using a chessboard to explain the basics of drag-and-drop.
 
 However, these examples have some drawbacks:
 
-- 📄  The code is a bit hard to follow because everything is in a single file.
+- 📄 The code is a bit hard to follow because everything is in a single file.
 - 💄 The examples use the Emotion library for CSS, which can be distracting due to the additional dependencies.
 - 🛠️ If you download the code from CodeSandbox to run locally, you may encounter issues during installation and execution due to version conflicts.
 
