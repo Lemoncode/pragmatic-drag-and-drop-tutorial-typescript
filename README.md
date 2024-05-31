@@ -2,6 +2,8 @@
 
 Welcome to the Pragmatic Drag & Drop Examples repository! This project aims to simplify and enhance the learning experience for developers exploring the [Pragmatic Drag & Drop](https://github.com/atlassian/pragmatic-drag-and-drop) library by Atlassian.
 
+- 🇪🇸: [Guide in Spanish](https://github.com/Lemoncode/pragmatic-drag-and-drop-tutorial-typescript/blob/main/README_es.md)
+
 ## 📝 Overview
 
 The Pragmatic Drag & Drop library by Atlassian is a powerful tool for implementing drag-and-drop functionality in web applications. In their [tutorial section](https://atlassian.design/components/pragmatic-drag-and-drop/tutorial), Atlassian provides interesting examples using a chessboard to explain the basics of drag-and-drop.
@@ -24,7 +26,6 @@ We hope these improvements will make it easier for you to follow along and learn
 
 ## 🔮 Future Improvements
 
-- We plan to create guides in Spanish.
 - Additional explanations and details will be added to further enhance the learning experience.
 - Add more example extending the current tutorial.
 
