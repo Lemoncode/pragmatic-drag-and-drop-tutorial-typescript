@@ -2,7 +2,7 @@
 
 Welcome to the Pragmatic Drag & Drop Examples repository! This project aims to simplify and enhance the learning experience for developers exploring the [Pragmatic Drag & Drop](https://github.com/atlassian/pragmatic-drag-and-drop) library by Atlassian.
 
-- 🇪🇸: [Guide in Spanish](https://github.com/Lemoncode/pragmatic-drag-and-drop-tutorial-typescript/blob/main/README_es.md)
+- 🇪🇸: [Guide in Spanish](https://github.com/Lemoncode/pragmatic-drag-and-drop-tutorial-typescript/blob/main/README_ES.md)
 
 ## 📝 Overview
 
