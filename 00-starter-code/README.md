@@ -4,7 +4,7 @@ This project is based on the tutorial for Pragmatic Drag and Drop from Atlassian
 
 In this project:
 
-- We have removed dependencies (instead of using emotionm, just use plain css).
+- We have removed dependencies (instead of using emotion, just use plain css).
 - We have structured the project in a way that is easy to understand and extend.
 - We have added step by step guides to reproduce the tutorial.
 
