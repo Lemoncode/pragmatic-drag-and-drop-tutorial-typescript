@@ -84,6 +84,8 @@ export function Chessboard() {
 +          }
 +        },
 +      });
++    // Añadir 'pieces' como dependencias garantiza que el efecto se vuelva a ejecutar
++    // cada vez que la ubicación o las piezas cambien, manteniendo actualizada la lógica del target.
 +    }, [pieces]);
 
   return <div className={styles.board}>{renderSquares(pieces)}</div>;
