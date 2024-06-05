@@ -22,6 +22,8 @@ npm run dev
 
 Pragmatic drag and drop provides a draggable function that you attach to an element to enable the draggable behavior. When using React this is done in an effect:
 
+![Demonstration of the drag attached to the element](./public/01-step-1-example.gif)
+
 _./src/board/components/pieces.component.tsx_
 
 ```diff

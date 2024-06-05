@@ -6,6 +6,8 @@ Los objetivos de soltado son elementos sobre los que un elemento arrastrable se 
 
 Crear un objetivo de soltado sigue la misma técnica que para el arrastrable. Vamos a abstraer las casillas del tablero, que anteriormente eran divs, en su propio componente.
 
+![Demostración del comportamiento de las casillas dependiendo de si se puede soltar o no](./public/02-step-2-example.gif)
+
 _./src/board/components/square.module.css_
 
 ```css
