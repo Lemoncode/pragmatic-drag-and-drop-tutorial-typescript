@@ -8,7 +8,7 @@ Por lo tanto, podemos colocar un monitor dentro de un `useEffect` en el nivel su
 
 Para lograr esto, primero necesitamos exponer la ubicación de las casillas dentro del objetivo de soltado, como hicimos para las piezas arrastrables en el paso anterior:
 
-![Gif sobre cómo debe funcionar](./public/03-step-3-example.gif)
+![Demostración del moviento de las piezas](./public/03-step-3-example.gif)
 
 _./src/board/components/square.component.tsx_
 

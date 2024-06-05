@@ -8,7 +8,7 @@ Therefore we can place a monitor within a useEffect at the top level of our ches
 
 To achieve this we first need to surface the location of the squares within the drop target, as we did for the draggable pieces in the previous step:
 
-![Gif about how it should work](./public/03-step-3-example.gif)
+![Demonstration of the movement of the pieces](./public/03-step-3-example.gif)
 
 _./src/board/components/square.component.tsx_
 

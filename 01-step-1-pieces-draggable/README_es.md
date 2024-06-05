@@ -22,7 +22,7 @@ npm run dev
 
 Pragmatic drag and drop proporciona una función de arrastre que se adjunta a un elemento para habilitar el comportamiento de arrastre. Al usar React, esto se hace en un useEffect:
 
-![Gif sobre cómo debe funcionar](./public/01-step-1-example.gif)
+![Demostración del arrastre adjuntado al elemento](./public/01-step-1-example.gif)
 
 _./src/board/components/pieces.component.tsx_
 
