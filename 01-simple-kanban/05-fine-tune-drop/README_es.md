@@ -128,13 +128,16 @@ export const EmptySpaceDropZone: React.FC<Props> = (props) => {
   }, []);
 
   return (
-+   <>
++   <div
++     ref={ref}
++     style={{ flexGrow: 1, width: "100%", background: "transparent" }}
++   >
 +     <GhostCard show={isDraggedOver} />
       <div
-        ref={ref}
-        style={{ flexGrow: 1, width: "100%", background: "transparent" }}
+-        ref={ref}
+-        style={{ flexGrow: 1, width: "100%", background: "transparent" }}
       />
-+   </>
++   </div>
   );
 };
 ```
