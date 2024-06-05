@@ -6,7 +6,6 @@ Vamos a crear un ejemplo simple de Kanban, el objetivo de este ejemplo es el de 
 
 Este ejemplo toma como punto de partida el ejemplo _00-boilerplate_, copiatelo a una carpeta y haz `npm install` y `npm run dev`.
 
-
 ## Modelo de datos y api
 
 Vamos a empezar por ver que estructura de datos nos va a hacer falta:
@@ -328,7 +327,7 @@ _./app.css_
 Ahora ejecutamos y ya podemos ver que ocupa bastante espacio :).
 
 ```bash
-npm start
+npm run dev
 ```
 
 ✅ Somos capaces de mostrar un contenedor vacio...
@@ -363,6 +362,7 @@ _./src/kanban/column/column.component.module.css_
   overflow: hidden; /*TODO: scroll? */
   border: 1px solid rgb(4, 1, 19); /* TODO: Theme colors, variables, CSS API? */
   background-color: aliceblue;
+  color: black;
 }
 ```
 
@@ -428,7 +428,7 @@ import classes from "./container.css";
 - Corremos a probarlo :)
 
 ```bash
-npm start
+npm run dev
 ```
 
 ✅ Somos capaces de mostrar las columnas del _kanban_...
@@ -499,7 +499,7 @@ _./src/kanban/column/column.component.tsx_
 - A ver qué tal sale :)
 
 ```bash
-npm start
+npm run dev
 ```
 
 ✅ Somos capaces de mostrar las _cards_...
@@ -532,6 +532,33 @@ Y arreglamos los _imports_ de:
 - components
 - kanban.container
 
+_./src/kanban/api/kanban.api.ts_
+
+```diff
+- import { KanbanContent } from "./model";
+- import { mockData } from "./mock-data";
++ import { KanbanContent } from "../model";
++ import { mockData } from "../mock-data";
+```
+
+_./src/kanban/components/cards/cards.component.tsx_
+
+```diff
+import React from "react";
+- import { CardContent } from "../model";
++ import { CardContent } from "../../model";
+```
+
+_./src/kanban/components/column/column.component.tsx_
+
+```diff
+import classes from "./column.component.module.css";
+- import { CardContent } from "../model";
++ import { CardContent } from "../../model";
+- import { Card } from "../card/card.component";
++ import { Card } from "../card";
+```
+
 _./src/kanban/kanban.container.tsx_
 
 ```diff
@@ -543,4 +570,3 @@ import { KanbanContent, createDefaultKanbanContent } from "./model";
 + import { Column } from "./components";
   import classes from "./kanban.container.module.css";
 ```
-
