@@ -84,6 +84,8 @@ export function Chessboard() {
 +          }
 +        },
 +      });
++    // Adding 'pieces' as dependencies ensures the effect is re-run
++    // whenever the location or pieces change, keeping the drop target logic updated.
 +    }, [pieces]);
 
   return <div className={styles.board}>{renderSquares(pieces)}</div>;

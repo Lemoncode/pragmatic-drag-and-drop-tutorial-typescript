@@ -61,6 +61,8 @@ export function Square({ location, children, pieces }: SquareProps) {
       onDragLeave: () => setState("idle"),
       onDrop: () => setState("idle"),
     });
+    // Adding 'pieces' as dependencies ensures the effect is re-run
+    // whenever the location or pieces change, keeping the drop target logic updated.
   }, [pieces]);
 
   const isDark = (location[0] + location[1]) % 2 === 1;
