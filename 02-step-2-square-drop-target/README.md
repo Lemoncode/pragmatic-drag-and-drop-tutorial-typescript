@@ -6,6 +6,8 @@ Drop targets are elements that a draggable element can be dropped on.
 
 Creating a drop target follows the same technique as for draggable. Let's abstract out the board's squares, which were previously divs, into their own component.
 
+![Gif about how it should work](./public/02-step-2-example.gif)
+
 _./src/board/components/square.module.css_
 
 ```css
