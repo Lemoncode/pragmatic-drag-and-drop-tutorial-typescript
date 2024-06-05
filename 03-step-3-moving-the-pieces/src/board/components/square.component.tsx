@@ -61,7 +61,7 @@ export function Square({ location, children, pieces }: SquareProps) {
       onDragLeave: () => setState("idle"),
       onDrop: () => setState("idle"),
     });
-  }, []);
+  }, [pieces]);
 
   const isDark = (location[0] + location[1]) % 2 === 1;
 
