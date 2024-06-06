@@ -171,7 +171,7 @@ Para no guarrear el container con lógica de negocios vamos a crear una función
 _./src/kanban/kanban.business.ts_
 
 ```typescript
-import { CardContent, Column, KanbanContent } from "./model";
+import { CardContent, KanbanContent } from "./model";
 
 // Esto se podría hacer más optimo
 
@@ -232,6 +232,13 @@ Fijate que en el `useEffect` que usamos le decimos que salta como dependencia cu
 _./src/kanban/kanban.container.tsx_
 
 ```diff
+import {
++  CardContent,
+  KanbanContent,
+  createDefaultKanbanContent,
+} from "./model";
+import { loadKanbanContent } from "./api";
+import { Column } from "./components/column/";
 + import { monitorForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
 + import { moveCard } from "./kanban.business";
 // (...)
@@ -270,8 +277,7 @@ export const KanbanContainer: React.FC = () => {
 
 ```
 
-Vamos a modificar el business para que en el -1 lo ponga al final de la columna:
-
+Vamos a modificar el business para que en el -1 lo ponga al final de la columna.
 Toca modificar la función de negocio, para no liarnos demasiado con actualizaciones inmutables, vamos a instalar la librería _immer_.
 
 ```bash
@@ -281,6 +287,8 @@ npm install immer
 _./src/kanban/kanban.business.ts_
 
 ```diff
+- import { CardContent, KanbanContent } from "./model";
++ import { CardContent, Column, KanbanContent } from "./model";
 + import { produce } from "immer";
 
 // (...)
