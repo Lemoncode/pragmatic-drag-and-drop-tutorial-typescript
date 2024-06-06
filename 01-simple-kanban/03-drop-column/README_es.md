@@ -20,6 +20,7 @@ _./src/kanban/components/column/column.component.tsx_
 - import React from "react";
 + import React, { useState, useEffect, useRef } from "react";
 + import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
++ import invariant from "tiny-invariant";
 import classes from "./column.component.module.css";
 import { CardContent } from "../../model";
 import { Card } from "../card/card.component";
@@ -102,7 +103,7 @@ Y ¿El Drop? Cómo informo de la columna destino en la que estamos?
 
 Lo primero vamos a pasar el id de la columna al column component:
 
-_./src/kanban/components/kanban/column.component.tsx_
+_./src/kanban/components/kanban/column/column.component.tsx_
 
 ```diff
 interface Props {
@@ -113,7 +114,7 @@ interface Props {
 
 export const Column: React.FC<Props> = (props) => {
 -  const { name, content } = props;
-+ const { name, content, columnId } = props;
++ const { columnId, name, content } = props;
 ```
 
 Vamos a pasarselo desde el container:
@@ -170,7 +171,10 @@ Para no guarrear el container con lógica de negocios vamos a crear una función
 _./src/kanban/kanban.business.ts_
 
 ```typescript
-import { CardContent, KanbanContent } from "./model";
+import { CardContent, Column, KanbanContent } from "./model";
+import { produce } from "immer";
+
+type DropArgs = { columnId: number; cardId: number };
 
 // Esto se podría hacer más optimo
 
@@ -193,17 +197,27 @@ const removeCardFromColumn = (
   };
 };
 
+const dropCardAfter = (
+  origincard: CardContent,
+  destinationCardId: number,
+  destinationColumn: Column
+): Column => {
+  return produce(destinationColumn, (draft: { content: CardContent[] }) => {
+    const index = draft.content.findIndex(
+      (card: { id: number }) => card.id === destinationCardId
+    );
+    draft.content.splice(index, 0, origincard);
+  });
+};
+
 const addCardToColumn = (
   card: CardContent,
-  columnId: number,
+  dropArgs: DropArgs,
   kanbanContent: KanbanContent
 ): KanbanContent => {
   const newColumns = kanbanContent.columns.map((column) => {
-    if (column.id === columnId) {
-      return {
-        ...column,
-        content: [...column.content, card],
-      };
+    if (column.id === dropArgs.columnId) {
+      return dropCardAfter(card, dropArgs.cardId, column);
     }
     return column;
   });
@@ -216,11 +230,11 @@ const addCardToColumn = (
 
 export const moveCard = (
   card: CardContent,
-  destinationColumnId: number,
+  dropArgs: DropArgs,
   kanbanContent: KanbanContent
 ): KanbanContent => {
   const newKanbanContent = removeCardFromColumn(card, kanbanContent);
-  return addCardToColumn(card, destinationColumnId, newKanbanContent);
+  return addCardToColumn(card, dropArgs, newKanbanContent);
 };
 ```
 
@@ -234,6 +248,7 @@ _./src/kanban/kanban.container.tsx_
 
 ```diff
 + import { monitorForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
++ import { moveCard } from "./kanban.business";
 // (...)
 
 export const KanbanContainer: React.FC = () => {
@@ -259,7 +274,7 @@ export const KanbanContainer: React.FC = () => {
 +
 +        // También aquí nos aseguramos de que estamos trabajando con el último estado
 +        setKanbanContent((kanbanContent) =>
-+          moveCard(card, columnId, kanbanContent)
++          moveCard(card, { cardId: card.id, columnId }, kanbanContent)
 +        );
 +      },
 +    });
