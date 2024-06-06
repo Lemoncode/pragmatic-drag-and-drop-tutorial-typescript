@@ -33,7 +33,7 @@ export const KanbanContainer: React.FC = () => {
 
         // También aquí nos aseguramos de que estamos trabajando con el último estado
         setKanbanContent((kanbanContent) =>
-          moveCard(card, { cardId: card.id, columnId }, kanbanContent)
+          moveCard(card, columnId, kanbanContent)
         );
       },
     });

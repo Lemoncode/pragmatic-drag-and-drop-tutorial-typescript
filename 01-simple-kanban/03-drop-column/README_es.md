@@ -172,9 +172,6 @@ _./src/kanban/kanban.business.ts_
 
 ```typescript
 import { CardContent, Column, KanbanContent } from "./model";
-import { produce } from "immer";
-
-type DropArgs = { columnId: number; cardId: number };
 
 // Esto se podría hacer más optimo
 
@@ -197,27 +194,17 @@ const removeCardFromColumn = (
   };
 };
 
-const dropCardAfter = (
-  origincard: CardContent,
-  destinationCardId: number,
-  destinationColumn: Column
-): Column => {
-  return produce(destinationColumn, (draft: { content: CardContent[] }) => {
-    const index = draft.content.findIndex(
-      (card: { id: number }) => card.id === destinationCardId
-    );
-    draft.content.splice(index, 0, origincard);
-  });
-};
-
 const addCardToColumn = (
   card: CardContent,
-  dropArgs: DropArgs,
+  columnId: number,
   kanbanContent: KanbanContent
 ): KanbanContent => {
   const newColumns = kanbanContent.columns.map((column) => {
-    if (column.id === dropArgs.columnId) {
-      return dropCardAfter(card, dropArgs.cardId, column);
+    if (column.id === columnId) {
+      return {
+        ...column,
+        content: [...column.content, card],
+      };
     }
     return column;
   });
@@ -230,15 +217,13 @@ const addCardToColumn = (
 
 export const moveCard = (
   card: CardContent,
-  dropArgs: DropArgs,
+  destinationColumnId: number,
   kanbanContent: KanbanContent
 ): KanbanContent => {
   const newKanbanContent = removeCardFromColumn(card, kanbanContent);
-  return addCardToColumn(card, dropArgs, newKanbanContent);
+  return addCardToColumn(card, destinationColumnId, newKanbanContent);
 };
 ```
-
-// TODO: Instead of cardId pass whole card !!?
 
 Vamos ahora a utilizar esta función en el container:
 
@@ -274,7 +259,7 @@ export const KanbanContainer: React.FC = () => {
 +
 +        // También aquí nos aseguramos de que estamos trabajando con el último estado
 +        setKanbanContent((kanbanContent) =>
-+          moveCard(card, { cardId: card.id, columnId }, kanbanContent)
++          moveCard(card, columnId, kanbanContent)
 +        );
 +      },
 +    });
@@ -287,27 +272,62 @@ export const KanbanContainer: React.FC = () => {
 
 Vamos a modificar el business para que en el -1 lo ponga al final de la columna:
 
+Toca modificar la función de negocio, para no liarnos demasiado con actualizaciones inmutables, vamos a instalar la librería _immer_.
+
+```bash
+npm install immer
+```
+
 _./src/kanban/kanban.business.ts_
 
 ```diff
-const dropCardAfter = (
-  origincard: CardContent,
-  destinationCardId: number,
-  destinationColumn: Column
-): Column => {
-+  if (destinationCardId === -1) {
-+    return produce(destinationColumn, (draft) => {
-+      draft.content.push(origincard);
-+    });
-+  }
++ import { produce } from "immer";
 
-  return produce(destinationColumn, (draft: { content: CardContent[] }) => {
-    const index = draft.content.findIndex(
-      (card: { id: number }) => card.id === destinationCardId
-    );
-    draft.content.splice(index, 0, origincard);
+// (...)
+
++  const dropCardAfter = (
++    origincard: CardContent,
++    destinationCardId: number,
++    destinationColumn: Column
++  ): Column => {
++    if (destinationCardId === -1) {
++      return produce(destinationColumn, (draft) => {
++        draft.content.push(origincard);
++      });
++    }
++
++    return produce(destinationColumn, (draft: { content: CardContent[] }) => {
++      const index = draft.content.findIndex(
++        (card: { id: number }) => card.id === destinationCardId
++      );
++      draft.content.splice(index, 0, origincard);
++    });
++  };
+
+const addCardToColumn = (
+  card: CardContent,
+  columnId: number,
+  kanbanContent: KanbanContent
+): KanbanContent => {
+  const newColumns = kanbanContent.columns.map((column) => {
+-    if (column.id === columnId) {
+-      return {
+-        ...column,
+-        content: [...column.content, card],
+-      };
+-    }
++    if (column.id === columnId) {
++      return dropCardAfter(card, -1, column);
++    }
+    return column;
   });
+
+  return {
+    ...kanbanContent,
+    columns: newColumns,
+  };
 };
+
 ```
 
 Si ahora lo probamos
