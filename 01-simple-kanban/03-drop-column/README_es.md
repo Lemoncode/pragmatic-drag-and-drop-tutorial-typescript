@@ -301,9 +301,9 @@ const dropCardAfter = (
 +    });
 +  }
 
-  return produce(destinationColumn, (draft) => {
+  return produce(destinationColumn, (draft: { content: CardContent[] }) => {
     const index = draft.content.findIndex(
-      (card) => card.id === destinationCardId
+      (card: { id: number }) => card.id === destinationCardId
     );
     draft.content.splice(index, 0, origincard);
   });
