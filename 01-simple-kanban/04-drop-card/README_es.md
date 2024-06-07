@@ -38,7 +38,7 @@ _./src/kanban/components/column/column.component.tsx_
     <Card
       key={card.id}
       content={card}
-+      columnId={columnId}
++     columnId={columnId}
     />
   ))}
 ```
@@ -48,7 +48,8 @@ Ahora que lo tenemos lo único que vamos a hacer es quitar el drop de la columna
 _./src/kanban/components/column/column.component.tsx_
 
 ```diff
-import React, { useState, useEffect, useRef } from "react";
+- import React, { useState, useEffect, useRef } from "react";
++ import React from "react";
 - import invariant from "tiny-invariant";
 - import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
 import classes from "./column.component.module.css";
@@ -178,7 +179,7 @@ _./src/kanban/kanban.container.tsx_
 
 ```
 
-Toca modificar la función de negocio, para no liarnos demasiado con actualizaciones inmutables, vamos a instalar la librería _immer_.
+Toca modificar la función de negocio, para no liarnos demasiado con actualizaciones inmutables, vamos a usar la librería _immer_.
 
 ```bash
 npm install immer
@@ -209,16 +210,27 @@ export const moveCard = (
 + import { produce } from "immer";
 // (...)
 
-+ const dropCardAfter = (
-+  origincard: CardContent,
-+  destinationCardId: number,
-+  destinationColumn: Column,
-+ ) : Column => {
+ const dropCardAfter = (
+  origincard: CardContent,
+  destinationCardId: number,
+  destinationColumn: Column,
+ ): Column => {
+-  if (destinationCardId === -1) {
+-    return produce(destinationColumn, (draft) => {
+-      draft.content.push(origincard);
+-    });
+-  }
+
+-  return produce(destinationColumn, (draft: { content: CardContent[] }) => {
+-    const index = draft.content.findIndex(
+-      (card: { id: number }) => card.id === destinationCardId
+-    );
 +  return produce(destinationColumn, (draft) => {
 +    const index = draft.content.findIndex((card) => card.id === destinationCardId);
-+    draft.content.splice(index, 0, origincard);
-+  });
-+ }
+     draft.content.splice(index, 0, origincard);
+   });
+ };
+
 
 
 const addCardToColumn = (
