@@ -63,7 +63,7 @@ _./src/kanban/components/ghost-card/ghost-card.component.tsx_
 
 ```tsx
 import React from "react";
-import classes from "./ghost-card.component.css";
+import classes from "./ghost-card.component.module.css";
 
 interface Props {
   show: boolean;
@@ -107,7 +107,7 @@ _./src/kanban/components/empty-space-drop-zone/empty-space-drop-zone.component.t
 ```diff
 - import { useEffect, useRef } from "react";
 + import { useEffect, useRef, useState } from "react";
-+ import { GhostCard } from "./ghost-card.component/ghost-card.component";
++ import { GhostCard } from "./ghost-card/ghost-card.component";
 
 export const EmptySpaceDropZone: React.FC<Props> = (props) => {
   const { columnId } = props;
@@ -133,10 +133,10 @@ export const EmptySpaceDropZone: React.FC<Props> = (props) => {
 +     style={{ flexGrow: 1, width: "100%", background: "transparent" }}
 +   >
 +     <GhostCard show={isDraggedOver} />
-      <div
+-    <div
 -        ref={ref}
 -        style={{ flexGrow: 1, width: "100%", background: "transparent" }}
-      />
+-     />
 +   </div>
   );
 };
