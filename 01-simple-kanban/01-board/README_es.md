@@ -1,4 +1,4 @@
-# 00 Board
+# 01 Board
 
 Vamos a crear un ejemplo simple de Kanban, el objetivo de este ejemplo es el de aprender como funciona la librería, para un ejemplo más elaborado, puedes visitar el ejemplo oficial (https://atlassian.design/components/pragmatic-drag-and-drop/examples/#board).
 

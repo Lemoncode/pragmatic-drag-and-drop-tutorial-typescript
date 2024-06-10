@@ -1,4 +1,4 @@
-# 01 Fine tune drop
+# 05 Fine tune drop
 
 Ya tenemos un kanban muy básico, vamos a empezar a afinarlo (esto se puede llevar el 80% del tiempo de desarrollo de un proyecto :)).
 

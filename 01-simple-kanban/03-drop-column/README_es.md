@@ -1,4 +1,4 @@
-# 01 Drop
+# 03 Drop
 
 Vamos a implementar el drop, ¿Cual crees tu que debería ser al área \_droppable?
 
