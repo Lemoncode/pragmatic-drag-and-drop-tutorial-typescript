@@ -1,10 +1,12 @@
 # 05 Fine tune drop
 
-We already have a very basic kanban board, let's start refining it (this can take up to 80% of the development time of a project :)).
+We already have implemented a very basic kanban board, let's start refining it (this can take up to 80% of the development time of a project :)).
 
 Right now, when we drop the card, we're not sure where it will be dropped - on top of the card? Below it?
 
 As a first step, let's show a _ghost card_ indicating the position where it will be placed. Later on, we could consider having a top area (for dropping the card above) and a bottom area (for dropping the card below).
+
+> If you are looking for more refined solution you can check the line separator solution in the [Pragamatic Drag And Drop Examples](https://atlassian.design/components/pragmatic-drag-and-drop/examples/), if you want us to implement this separator step by step, please open an issue and we will delighted of adding it.
 
 ## Step by step
 
@@ -45,7 +47,7 @@ _./src/kanban/components/card/card.component.tsx_
   );
 ```
 
-Now we can create a more realistic ghost card. For this, let's create a new component _ghost-card_ responsible for displaying the _ghost card_.
+Now we can create a more realistic ghost card. In order to do that, let's create a new component _ghost-card_ that will be responsible for displaying the _ghost card_.
 
 _./src/kanban/components/ghost-card/ghost-card.component.module.css_
 
@@ -100,7 +102,7 @@ _./src/kanban/components/card/card.component.tsx_
   );
 ```
 
-Now we have the bottom part left, the _empty-space-drop-zone_.
+Now we have to do the same for the the _empty-space-drop-zone_ (do you remember the special edge case when you drop on the bottom the column?).
 
 _./src/kanban/components/empty-space-drop-zone.component.tsx_
 
@@ -140,4 +142,10 @@ export const EmptySpaceDropZone: React.FC<Props> = (props) => {
 +   </div>
   );
 };
+```
+
+Le'ts give a try and you will see it in action :)
+
+```bash
+npm run dev
 ```
