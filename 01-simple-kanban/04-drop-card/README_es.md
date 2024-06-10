@@ -231,31 +231,26 @@ export const moveCard = (
    });
  };
 
-
-
-const addCardToColumn = (
-  card: CardContent,
+ const addCardToColumn = (
+   card: CardContent,
 -  columnId: number,
 +  dropArgs: DropArgs,
-  kanbanContent: KanbanContent
-): KanbanContent => {
-  const newColumns = kanbanContent.columns.map((column) => {
+   kanbanContent: KanbanContent
+ ): KanbanContent => {
+   const newColumns = kanbanContent.columns.map((column) => {
 -    if (column.id === columnId) {
-+   if (column.id === dropArgs.columnId) {
--      return {
--        ...column,
--        content: [...column.content, card],
--      };
+-      return dropCardAfter(card, -1, column);
++    if (column.id === dropArgs.columnId) {
 +      return dropCardAfter(card, dropArgs.cardId, column);
-    }
-    return column;
-  });
+     }
+     return column;
+   });
 
-  return {
-    ...kanbanContent,
-    columns: newColumns,
-  };
-};
+   return {
+     ...kanbanContent,
+     columns: newColumns,
+   };
+ };
 ```
 
 Probamos
