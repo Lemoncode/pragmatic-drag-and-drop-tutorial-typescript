@@ -23,9 +23,44 @@ Para eliminar estos problemas, hemos:
 - 🧹 Simplificado el ejemplo eliminando dependencias innecesarias, como Emotion, y usando CSS simple en su lugar.
 - 📂 Organizado el proyecto en carpetas y archivos para hacer el código más modular y fácil de entender.
 - 📚 Creado guías paso a paso en formato markdown para cada ejemplo, permitiéndote reproducir los ejemplos fácilmente.
+- 🆕 Añadido nuevos ejemplos como un tablero de Kanban simple para que puedas ver cómo aplicar la librería sin distraerte en detalles de implementación.
 - 🇪🇸 Traducido las guías al español para que puedas seguir los ejemplos en tu idioma nativo.
 
 Esperamos que estas mejoras te hagan más fácil seguir el tutorial y pues aprender mejor cómo funciona esta fantástica librería.
+
+## Ejemplos implementados
+
+### Chessboard
+
+![Tablero de ajedrez con un rey y un peón, puedes arrastrar y soltar ambas piezas; si el destino del movimiento es válido, se coloreará en verde; si no, en rojo.](./00-chessboard/03-step-3-moving-the-pieces/public/03-step-3-example.gif)
+
+This [example is taken from its original tutorial](https://atlassian.design/components/pragmatic-drag-and-drop/tutorial). What are the differences from the original?
+
+    - The Emotion dependency has been removed and simple CSS has been used.
+
+    - The code has been organized into folders and files to make it more modular and easier to understand.
+
+    - A step-by-step guide in markdown format has been created so you can easily reproduce the example.
+
+    - The guide is also translated into Spanish so you can follow the example in your native language.
+
+### Simple Kanban Board
+
+Este ejemplo muestra como implementar un tablero Kanban Simple, el objetivo de esta base de código es que te centres en lo que ofrece la librería sin distraerte en detalles (si buscas una solución más refinada, puedes consultar la [Demo que ofrece Pragmatic Drag And Drop](https://atlassian.design/components/pragmatic-drag-and-drop/examples)).
+
+Qué se ha implementado:
+
+    - Un punto de partida (se muestran columnas y tarjetas).
+
+    - Cómo hacer drag de las cartas.
+
+    - Cómo hacer drop en las columnas (y por qué no es buena del todo la solución).
+
+    - Cómo hacer drop en las cards.
+
+    - Cómo mostrar una card _fantasma_ mientras se hace drag, para indicar donde se va a soltar la card.
+
+> Este kanban es `Work in Progress` ahora mismo hay cinco pasos implementados, en el futuro iremos añadiendo más mejoras.
 
 ## 🔮 Mejoras a futuro.
 
