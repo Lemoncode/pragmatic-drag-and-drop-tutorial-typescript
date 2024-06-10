@@ -1,26 +1,24 @@
 # 01 Board
 
-We are going to create a simple Kanban example, the objective of this example is to learn how the library works, for a more elaborate example, you can visit the official example (https://atlassian.design/components/pragmatic-drag-and-drop/examples/#board).
+We are going to create a simple Kanban example, the goal of this example is to learn how the library works, for a more elaborated example, you can visit the [official atlassian demo](https://atlassian.design/components/pragmatic-drag-and-drop/examples/#board).
 
 # Step by step
 
-This example takes the _00-boilerplate_ example as a starting point, copy it to a folder and do `npm install` and `npm run dev`.
+This example takes the _00-boilerplate_ as a starting point, you can copy it to a given folder and execute `npm install` and then `npm run dev`.
 
 ## Data model and api
 
-Let's start by seeing what data structure we will need:
+Let's start by checking what data structure we will need:
 
 - A _kanban_ board is going to have a list of columns.
 
-- A list of columns is going to have a list of tasks/stories (we can call them
-  cards)
+- A list of columns is going to have a list of tasks/stories (we can call them cards)
 
-- A card is going to be defined simple for the moment, with an _id_ and a title.
+- A card, as starting point, is going to be defined in a very simple way, just with an _id_ and a title.
 
-Hey but in my real application I have more fields or different fields, what do we do?
+_Hey but in my real application I have more fields or different fields, what can do we do?_
 
-- At first we want to test the library, we can worry about this later.
-  later.
+- At first we want to play with the library and grasp the basics, we can worry about this details later.
 
 - Once we go for the real implementation, the first thing is to create a _mapper_, ie a function that transforms from the domain of my application to the domain of entities of the _kanban_ and vice versa, so we do not taint the implementation of the _kanban_ with specific issues of my application, which then make it more difficult to use it in other applications or even in the same _app_ with other entities.
 
@@ -28,14 +26,13 @@ Hey but in my real application I have more fields or different fields, what do w
 
   - Maybe we are clear that we want to have title, description of the _card_ and little more, in this case we map entities and at most add a field “_object_” or “_data_” in which we have the original entity (this could be looked at typing with generics).
 
-  - Maybe we want a rich edition in the card or flexible, an option could be to pass as _children_ or in props the component that we want to paint in the _card_ in particular.
+  - Maybe we want a rich edition in the card or provide a flexible layout, an option could be to pass as _children_ or in props the component that we want to paint in the _card_ in particular.
 
-> Be careful with the Meta Meta and going to super generics, the more we
+> Be careful with the Meta Meta and going to super generic solutions, the more we
 > head in that direction the complexity curve of the component skyrockets.
-> the more we go in that direction the complexity curve of the component shoots up exponentially, it is necessary to find the right measure between generic and easy to
-> maintenance (or if you have to go super generic then for business justification),
-> my advice here is always to “make several vases” before “trying to make the
-> mold".
+> it is necessary to find the right measure between going generic and gettings a code base easy to
+> maintain (or if you have to go super generic solution then it should because of business needs),
+> my advice here is: "Before creating the mold for the vase, you need to make several vases first."
 
 So for the moment we create the following model, first we define an _item_ (_card_):
 
@@ -68,7 +65,7 @@ export interface CardContent {
 + }
 ```
 
-Y ahora definimos la entidad de _Kanban_ que de momento ponemos como una lista de columnas.
+And now we define the Kanban entity, which for now we set as a list of columns.
 
 _./src/kanban/model.ts_
 
@@ -89,7 +86,7 @@ export interface Column {
 + }
 ```
 
-- And finally, _KanbanContent_ will be the entry point entity that we will instantiate in our component, so it is better to have a function to instantiate an empty _kanban_ that serves as a safe entry point (we create a _factory_), this way we save doing null field checks, etc...
+- And finally, _KanbanContent_ will be the entry point entity that we will instantiate in our component, so it is better to have a function to instantiate an empty _kanban_ that serves as a safe entry point (we create a _factory_), by following this approach we avoid doing null field checks, etc...
 
 _./src/kanban/model.ts_
 
@@ -103,13 +100,13 @@ export interface KanbanContent {
 + });
 ```
 
-It is time to create a mock api to load the data, as well as test data, to be taken into account:
+It is time to create a mock api to load the data (we will add some mock data), things to be taken into account:
 
-- The api must have the same signature as if we were loading data from an _API Rest_ (async and promises), so when we replace the _mock_ with real data we are only going to have to touch in the API.
+- The api must have the same signature as if we were loading data from an _REST API_ (async and promises), so when we replace the _mock_ with real data we are only going to have to make the updates in the API.
 
-- The _mock_ data we define it in a separate file, so it is easier to delete and we don't make noise.
+- The _mock_ data we will define it in a separate file, so it is easier to delete and we don't add extra noise to the codebase.
 
-At the moment both api and _mock_ are going to be defined inside the _kanban_ component, in the final implementation we will probably take it out of the folder (it will be directly the application page that asks for the data to a server, we pass it a _mapper_ and convert it to entities of the application), but we do not get involved here now, better not to put more elements of complexity in the equation, first we crawl, then walk and finally run (reminder: it is important that this is a _spike_ and that we have 2/3 weeks to play without pressure).
+At the moment both api and _mock_ are going to be defined inside the _kanban_ component, in the final implementation we will probably take it out of the folder (it will be directly in the application page that request the data to a server, we will pass the results to _mapper_ and will convert from specific app entities to my kanban entities), but we are not going to get involved into this right now, better not to add more elements into the equation and raise the complexity right now, let's focus on solving issues step by step: first we crawl, then walk and finally run.
 
 The _mock_ data:
 
@@ -179,13 +176,13 @@ export const mockData: KanbanContent = {
 };
 ```
 
-> When we have code or implementations that need a wiggle, it is a good idea to add a TODO so that when the Pull Request arrives, they come to the surface (in this phase, there should not be TODO's or if there are, they should be justified and accept technical debt).
+> When we have code or implementations that need a wiggle, it is a good idea to add a `TODO` so that when a Pull Request is raised, all these `TODO's` will popup, and by then we can suggest a solution.
 
 - And now let's define the API
 
 _./src/kanban/kanban.api.ts_
 
-``ts
+```ts
 import { KanbanContent } from «./model»;
 import { mockData } from «./mock-data»;
 
@@ -193,30 +190,28 @@ import { mockData } from «./mock-data»;
 export const loadKanbanContent = async (): Promise<ContenidoKanban> => {
 return mockData;
 };
-
 ```
-Why don't we just embed the data directly into the _container_ and go for miles? It is important that the UI part is left with as little noise as possible, and it is good practice to remove as much code as possible that does not have to do with UI to flat TS files, in this way:
 
-- We help to avoid that the component becomes a monster: the typical file with 5000 lines of code, with a _sphaguetti_.
+Why don't we just embed the data directly into the _container_ ? It is important that the UI part is left with as little noise as possible, and it is good practice to remove as much code as possible that does not have to do with UI, and extract them to plain vanilla TS files, by following this approach:
 
-- By isolating code in TS file we already know that it is not dependent on React and a colleague who does not know React can work on that part without problems.
+- This will help avoiding the component to become a monster: the typical file with 5000 lines of code, with a truly _sphaguetti_.
+
+- By isolating code in a TS file we already know that it is not dependent on `React` and a colleague who does not know `React` could work on that part without problems, or reuse it on a `Node.js` server or `Vue` application, etc...
 
 - It is easier to test, we have parts that do one thing and one thing only.
-```
 
 ### Components
 
 Let's start working on the UI
 
-- Let's define the _kanban_ container, first a little style:
+- Let's define the _kanban_ container, first let's add some basic styling:
 
 The container div:
 
 - It's going to be a flexbox.
-- Your thing is that it takes up all the available space.
-- The columns will be shown from left to right, leaving a space between them.
-- We also add an overflow (if there were more cards than space in the column),
-  here we could see if in the future add a scroll, etc...
+- It takes up all the available space.
+- The columns will be shown from left to right, leaving a gap between them.
+- We also add an overflow (if there were more cards than space in the column right now the overflow will be hidden but we could configure e.g. scroll behavior),
 
 _./src/kanban/kanban.container.module.css_
 
@@ -235,13 +230,13 @@ _./src/kanban/kanban.container.module.css_
 }
 ```
 
-To consider:
+Take into account that:
 
-- This is not going to be the final design, but at least we have it focused (when the test is a success, we will worry about styling it with the fine hammer, rem, media queries, etc...).
+- This is not going to be the final design, but we focus on the main issue... resolving drag and drop, before starting with the bells and whistles (when the test is a success, we will worry about refined styling, rem, media queries, etc...).
 
-- The same with colors, theming, we will apply this when we integrate (here we will have to decide whether to directly apply _harcode_ styles or expose a theming api)
+- The same happens with colors, theming..., we will start very simple, and later on we could just expose some theming api or whatever suits the best.
 
-If you notice, there are a lot of decisions that could add noise to our proof of concept, our goal as software developers / architects is to delay all decisions that are not essential and focus on the core of our proof of concept (it doesn't hurt to point out everything that comes along the way, both to take it into account later, and to list it in the _spike_ demo and add it to the real implementation _user story_, it is very dangerous to show a demo that everything works and that the non-technical profile think that everything is already done).
+If you may have noticed, there are a lot of decisions that could add unnecesary noise to our proof of concept, our goal as software developers / architects is to delay all decisions that are not essential and focus on the core of our POC (altough is a good idea to note down everything that comes along the way, just to take account later once the POC core is done).
 
 Let's define the container component:
 
@@ -272,22 +267,17 @@ export const KanbanContainer: React.FC = () => {
 };
 ```
 
-That is, we just did the dumbest test to see if the container:
-
-- Void is created with the correct styles.
-- Loaded with data.
+Well we have created the simplest container, just to check that the data is loaded and that the container is created with the correct styles.
 
 At this point we can choose between two approaches:
 
-- We start creating the column component and then the card and integrate
-  in the main application to see if everything is mounted.
+- We start creating the column component and then the card and integrate it in the main application to see if everything is mounted.
 
-- We integrate as soon as possible into the main container and begin to have
-  Visual _feedback_ that everything is connecting.
+- We integrate as soon as possible into the main container and begin to have Visual _feedback_ checking that what we are creating is working.
 
-My advice here is to always go for the second solution, the sooner we can get things out of the UI the sooner we will detect problems and it will be easier to fix, since there is less code and fewer components to see if they are responsible for generating the failure.
+My advice here is to always go for the second option: the sooner we can get things out of the UI, the sooner we will detect problems and it will be easier to fix them, since there is less code and fewer components, the code surface is smaller and hence easery to find the offending line of code.
 
-So let's create a _barrel_ inside the _kanban_ to export our container:
+So, let's create a _barrel_ inside the _kanban_ to export our container:
 
 _./src/kanban/index.ts_
 
@@ -295,7 +285,7 @@ _./src/kanban/index.ts_
 export * from "./kanban.container";
 ```
 
-Y lo instanciamos en el app de nuestra aplicación de prueba:
+And we instantiate it in the `app` entry point of our test application:
 
 _./src/app.tsx_
 
@@ -309,7 +299,7 @@ export const App = () => {
 };
 ```
 
-It's time to test that this works (you see a rectangle with three titles)... it seems like a small thing but with less code I have made big mistakes :), in fact first pattern, the kanban does not take up the entire screen, but this is more application problem, the _body_ is a flex container, and we have to tell the root _div_ to take up all the space it can (we can set a _flex_ to 1), for this we can play with the dev tools.
+It's time to test that this works (you will see a rectangle with three titles)... it seems like a small thing but with less code I have committed bigger mistakes :), in fact first issue... the kanban does not take up the entire screen, but this is more an application lelve issue, the main `html` _body_ is a flex container, and we have to tell the root _div_ to take up all the space available (we can set a _flex_ to 1), you can play bit with the devtools and check results.
 
 Let's change it in the style sheet.
 
@@ -335,20 +325,20 @@ npm run dev
 
 Let's define the columns component:
 
-- Let's go for the style.
-- In our case the column component will receive from the container its name and a list of tasks (we will call it _content_, how to name variables / components / folders, takes a lot of discussion and study, it is very important, perhaps one more name appropriate could be _cardContentCollection_).
+- Let's go for the styling.
+- In our case the column component will receive from the container its name and a list of tasks (we will call that: _content_, how to name variables / components / folders, takes a lot of discussion and study, perhaps a more name appropriate could be _cardContentCollection_).
 
 About the style:
 
-- The column is going to be another flex container.
+- The column is going to be a flex container.
 
-- For the test it will have a fixed width (point a fine hammer and then add media queries to set a relative width or by percentages).
+- For the sake of simplicity it will have a fixed width (add a big TODO here, just to enhance this in the future, and for instance include some _media queries_ and different card sizes, depending on the screen size).
 
-- We will put _overflow_ in case there are more _cards_ than space in the column (fine hammer everything, resolve this when it is integrated into real)
+- We will add _overflow_ in case there are more _cards_ than space in the column (one more big TODO, just to cover it later on).
 
-- We add a background color to each column (EVERYTHING fine hammer here, either in the real application use the colors that come, or expose a CSS / theming API or through HTML variables).
+- We add a background color to each column (one more TODO, in the future this colors should come from some theming or API).
 
-- We give the height 100% of the height of the parent container.
+- We will take 100% 100% of the parent container.
 
 _./src/kanban/column/column.component.module.css_
 
@@ -367,7 +357,7 @@ _./src/kanban/column/column.component.module.css_
 }
 ```
 
-- Time to touch the code, we follow the same steps as in the container, we mount the minimum, and simply show the name of each _card_.
+- Time to move from `css` to code, we follow the same steps as in the container, we code the minimum and integrate it on the app to get visual feedback as soon as possible.
 
 _./src/kanban/column/column.component.tsx_
 
@@ -395,9 +385,9 @@ export const Column: React.FC<Props> = (props) => {
 };
 ```
 
-> Ask here... Would it be worth exposing the column in the barrel?
+> For the sake of simplicity and taking into account that this is an spike we won't add unit testing or component testing, but if we start working in the real codebase we should add all the proper testing.
 
-- We don't have time to test it :), let's integrate it into our _Kanban_ container:
+- Let's integrate it into our _Kanban_ container:
 
 _./src/kanban/kanban.container.tsx_
 
@@ -426,7 +416,7 @@ import classes from "./container.css";
 };
 ```
 
-- Let's run to try it :)
+- Let's give it a try :)
 
 ```bash
 npm run dev
@@ -434,11 +424,11 @@ npm run dev
 
 ✅ We are able to show the _kanban_ columns...
 
-This is starting to look good, now let's go for the _card_ component:
+Things start to look god, now let's go for the _card_ component:
 
-As for styling we are going to define: A class to style the card (width, border...).
+As for styling we are going to define a class to style the card (width, border...).
 
-The design is minimal, later you would have to apply _fine hammer_ to leave a _card_ with a professional appearance.
+The design is minimal, TODO: later you would have time to fine tune this styling.
 
 _./src/kanban/card/card.component.module.css_
 
@@ -472,7 +462,7 @@ export const Card: React.FC<Props> = (props) => {
 };
 ```
 
-- As always we run to use it in our column component and see the results:
+- As always, let's get visual feedback as soon as possible, let's integrate it the _column_ component:
 
 _./src/kanban/column/column.component.tsx_
 
@@ -497,7 +487,7 @@ _./src/kanban/column/column.component.tsx_
   );
 ```
 
-- Let's see how it turns out :)
+- Let's see give it a try :)
 
 ```bash
 npm run dev
@@ -505,10 +495,11 @@ npm run dev
 
 ✅ We are able to show the _cards_...
 
-- We already have our board set up, it's time to see how our _kanban_ folder is looking. It seems that there are many files, it would be a good idea to organize a little, let's create two folders:
-- _components_: where we will put the components that are not containers.
-- _api_: where we will put the files that are responsible for communication
-  with the _backend_ (which in this case are _mock_).
+- We already have our board set up, it's time to see how our _kanban_ folder is looking. It seems that there are many files, it would be a good idea to organize this a little bit, let's create two subfolders:
+
+  - _components_: where we will put the components that are not containers.
+
+  - _api_: where we will put the files that are related with the backend communication (in this case are _mock_).
 
 Let's create a _barrel_ for each of them:
 
@@ -519,15 +510,13 @@ export * from "./card";
 export * from "./column";
 ```
 
-> You have to create the sweeps for the card and column subfolder
-
 _./src/kanban/api/index.ts_
 
 ```ts
 export * from "./kanban.api";
 ```
 
-And we fix the _imports_ of:
+Let's update the _imports_ of the following files:
 
 - api
 - components
