@@ -1,4 +1,4 @@
-# Boiler plate
+# Boilerplate
 
 Este es el punto de partida para el ejemplo de Kanban simple.
 
