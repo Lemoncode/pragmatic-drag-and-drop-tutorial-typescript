@@ -43,6 +43,23 @@ This [example is taken from its original tutorial](https://atlassian.design/comp
 
 ### Simple Kanban Board
 
+![Simple kanban board, where you can drag a card from a given column and insert it in a destination column](./01-simple-kanban/05-fine-tune-drop/public/05-fine-tune-drop.gif)
+
+This example shows how to implement a simple Kanban board. The goal of this codebase is to help you focus on what the library offers without getting distracted by details (if you're looking for a more refined solution, you can check out the fantastic [Demo provided by Pragmatic Drag And Drop](https://atlassian.design/components/pragmatic-drag-and-drop/examples) ).
+
+What has been implemented:
+
+    - A starting point (columns and cards are displayed).
+
+    - How to drag the cards.
+
+    - How to drop in the columns (and why the solution is not entirely good).
+
+    - How to drop on the cards.
+
+    - How to show a _ghost_ card while dragging to indicate where the card will be dropped.
+
+> This Kanban is a `Work in Progress`. Currently, five steps have been implemented, and more improvements will be added in the future.
 
 ## 🔮 Future Improvements
 

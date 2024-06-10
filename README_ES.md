@@ -46,6 +46,8 @@ This [example is taken from its original tutorial](https://atlassian.design/comp
 
 ### Simple Kanban Board
 
+![Kanban board simple donde puedes arrastrar y soltar cards de una columna a otra](./01-simple-kanban/05-fine-tune-drop/public/05-fine-tune-drop.gif)
+
 Este ejemplo muestra como implementar un tablero Kanban Simple, el objetivo de esta base de código es que te centres en lo que ofrece la librería sin distraerte en detalles (si buscas una solución más refinada, puedes consultar la [Demo que ofrece Pragmatic Drag And Drop](https://atlassian.design/components/pragmatic-drag-and-drop/examples)).
 
 Qué se ha implementado:
