@@ -2,6 +2,10 @@
 
 Vamos a crear un ejemplo simple de Kanban, el objetivo de este ejemplo es el de aprender como funciona la librería, para un ejemplo más elaborado, puedes visitar el ejemplo oficial (https://atlassian.design/components/pragmatic-drag-and-drop/examples/#board).
 
+En este ejemplo vamos a implementar un tablero kanban simple:
+
+![Kanban board with three columns, backlog, doing, and done, and each column includes cards](./public/01-board.jpg)
+
 # Paso a paso
 
 Este ejemplo toma como punto de partida el ejemplo _00-boilerplate_, copiatelo a una carpeta y haz `npm install` y `npm run dev`.

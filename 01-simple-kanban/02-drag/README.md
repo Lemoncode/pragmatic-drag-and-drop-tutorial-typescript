@@ -2,6 +2,8 @@
 
 We already have a basic board, let's go for the first step, let the user drag a card.
 
+![Dragging a card using the mouse](./public/02-drag.gif)
+
 ## Step by step
 
 We will use Atlassian's `Pragmatic drag and drop`, so the first action to take is install the library:

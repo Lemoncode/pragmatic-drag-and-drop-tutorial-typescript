@@ -4,6 +4,8 @@ Vamos a implementar el drop, ¿Cual crees tu que debería ser al área \_droppab
 
 Seguro que a bote pronto se te ocurre decir que las columnas... tiene todo el sentido.
 
+![Drag en una tarjeta y drop en una columna](./public/03-drop-column.gif)
+
 En este ejemplo vamos a hacer que las columnas sean droppables, y que al soltar un elemento en una columna, este se añada a la lista de elementos de la columna.
 
 Después nos vamos a encontrar con un problema y enumeraremos que nos haría flata para dejarlo fino (por tema de tiempo no implementaramos ese camino complicado, aunque es buen ejercicio para el lector).

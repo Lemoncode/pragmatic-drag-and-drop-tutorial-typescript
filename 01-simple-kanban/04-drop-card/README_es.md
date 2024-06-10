@@ -1,6 +1,8 @@
 # 04 Drop Card
 
-Vamos a implementar el area de drop en las cards, así podremos interecalar cards al soltaras.
+Vamos a implementar el area de drop en las cards, así podremos intercalar cards al soltaras.
+
+![Insertar la carta entre otras cartas](./public/04-drop-card.gif)
 
 ## Paso a paso
 

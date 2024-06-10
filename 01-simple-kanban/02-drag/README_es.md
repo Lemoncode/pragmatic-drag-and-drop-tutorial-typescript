@@ -2,6 +2,8 @@
 
 Ya tenemos un tablero básico, vamos a por el primer paso, poder arrastrar una tarjeta.
 
+![Arrastrando una tarjeta con el ratón](./public/02-drag.gif)
+
 ## Paso a paso
 
 Vamos a usar `Pragmatic drag and drop` de Atlassian, así que lo primero que haremos es instalarlo:

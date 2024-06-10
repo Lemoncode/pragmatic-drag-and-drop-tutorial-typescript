@@ -6,6 +6,10 @@ Ahora mismo cuando soltamos la carta, no estamos muy seguros de donde se va a so
 
 Como primer paso vamos a mostrar una _carta fantasma_ indicando la posición en la que se va a colocar, más adelante podríamos plantear tener una zona de la carta (superior) para que la carta se coloque encima y otra zona (inferior) para que se coloque debajo.
 
+![Insertar la carta entre otras cartas](./public/05-fine-tune-drop.gif)
+
+> Si estás buscando una solución más refinada, puedes consultar la solución de separador de línea en los [Ejemplos de pragmatic drag an drop](https://atlassian.design/components/pragmatic-drag-and-drop/examples/). Si quieres que implementemos este separador paso a paso, por favor abre un issue y estaremos encantados de agregarlo.
+
 ## Paso a paso
 
 Partimos del ejemplo anterior, lo copiamos, instalamos dependencias y ejecutamos el proyecto.

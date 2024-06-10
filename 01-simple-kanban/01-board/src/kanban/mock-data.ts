@@ -9,23 +9,23 @@ export const mockData: KanbanContent = {
       content: [
         {
           id: 1,
-          title: "Crear las cards",
+          title: "Create the cards",
         },
         {
           id: 2,
-          title: "Colocar las cards",
+          title: "Place the cards in the columns",
         },
         {
           id: 3,
-          title: "Implementar drag card",
+          title: "Implement card dragging",
         },
         {
           id: 4,
-          title: "Implementar drop card",
+          title: "Implement drop card",
         },
         {
           id: 5,
-          title: "Implementar drag & drop column",
+          title: "Implement drag & drop column",
         },
       ],
     },
@@ -45,15 +45,15 @@ export const mockData: KanbanContent = {
       content: [
         {
           id: 7,
-          title: "Crear el boilerplate",
+          title: "Create boilerplate",
         },
         {
           id: 8,
-          title: "Definir el modelo de datos",
+          title: "Define data model",
         },
         {
           id: 9,
-          title: "Crear las columnas",
+          title: "Create columns",
         },
       ],
     },

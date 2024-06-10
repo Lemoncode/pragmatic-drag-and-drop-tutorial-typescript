@@ -6,6 +6,10 @@ We are going to create a simple Kanban example, the goal of this example is to l
 
 This example takes the _00-boilerplate_ as a starting point, you can copy it to a given folder and execute `npm install` and then `npm run dev`.
 
+In this step we will implement a simple static kanban board:
+
+![Kanban board with three columns, backlog, doing, and done, and each column includes cards](./public/01-board.jpg)
+
 ## Data model and api
 
 Let's start by checking what data structure we will need:

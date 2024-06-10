@@ -6,7 +6,10 @@ Right now, when we drop the card, we're not sure where it will be dropped - on t
 
 As a first step, let's show a _ghost card_ indicating the position where it will be placed. Later on, we could consider having a top area (for dropping the card above) and a bottom area (for dropping the card below).
 
-> If you are looking for more refined solution you can check the line separator solution in the [Pragamatic Drag And Drop Examples](https://atlassian.design/components/pragmatic-drag-and-drop/examples/), if you want us to implement this separator step by step, please open an issue and we will delighted of adding it.
+![Insert the card and indicator](./public/05-fine-tune-drop.gif)
+
+
+> If you are looking for more refined solution you can check the line separator solution in the [Pragmatic Drag And Drop Examples](https://atlassian.design/components/pragmatic-drag-and-drop/examples/), if you want us to implement this separator step by step, please open an issue and we will delighted of adding it.
 
 ## Step by step
 

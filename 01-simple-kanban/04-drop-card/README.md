@@ -2,6 +2,8 @@
 
 Let's implement the drop area in the cards so we can drop cards between them..
 
+![Drop the card in between cards](./public/04-drop-card.gif)
+
 ## Step by Step
 
 We start from the previous example, you can copy it, install dependencies, and run the project.
