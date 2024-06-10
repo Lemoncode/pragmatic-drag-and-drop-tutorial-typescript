@@ -1,10 +1,10 @@
 # 02 Drag
 
-We already have a basic board, let's go for the first step, being able to drag a card.
+We already have a basic board, let's go for the first step, let the user drag a card.
 
 ## Step by step
 
-We will use Atlassian's `Pragmatic drag and drop`, so the first thing we'll do is install it:
+We will use Atlassian's `Pragmatic drag and drop`, so the first action to take is install the library:
 
 ```bash
 npm install @atlaskit/pragmatic-drag-and-drop
@@ -15,7 +15,7 @@ Pragmatic drag and drop provides a drag function that attaches to an element to 
     - The drag starts in the card component.
     - We import `draggable` from the pragmatic drag and drop library.
     - We use `useRef` to reference the parent div of the `card`.
-    - We run a `useEffect` that will call `draggable` with the reference to the parent div of the `card`.
+    - We run a `useEffect` that will make a call to _Pragamatic Drag And Drop_ `draggable` function, including the reference to the parent div of the `card`.
 
 > Once we have written the code, we will fix an issue and see how `useEffect` and the cleanup function work.
 
@@ -49,7 +49,7 @@ export const Card: React.FC<Props> = (props) => {
 };
 ```
 
-Notice that we get an error, this is because `draggable` expects an element of type `HTMLElement` and `useRef` might have a null type. We know it’s not null, but in strict mode, we always play it safe. To make this work, we will install the `tiny-invariant` library which checks if the object exists, and if not, throws an exception (so we always have a non-null value).
+Notice that we get an error, this is because `draggable` expects an element of type `HTMLElement` and `useRef` might have a null type (this example is using `TypeScript` _strict mode_). We know that it won't be `null`, but in strict mode, it always plays safe. To make this work, we will install the `tiny-invariant` library which checks if the object exists, and if not, throws an exception (so, for `TypeScript` we always have a non-null value).
 
 ```bash
 npm install tiny-invariant
@@ -71,9 +71,7 @@ npm install tiny-invariant
  }, []);
 ```
 
-It's worth pausing for a second to look at the code for this library:
-
-https://github.com/alexreardon/tiny-invariant/blob/master/src/tiny-invariant.ts
+> It's worth pausing for a second and to look at the code for this small typescript library: https://github.com/alexreardon/tiny-invariant/blob/master/src/tiny-invariant.ts
 
 Let's take a moment to study the `useEffect` code, specifically the cleanup function.
 
@@ -84,7 +82,7 @@ You might think, “Hey, does the cleanup function only run when the component u
 
 To make this clearer, we could write the code like this:
 
-** Only do this for understanding, then return to the previous function **
+**Only do this for understanding, then return to the previous function**
 
 ```diff
   useEffect(() => {
@@ -105,7 +103,7 @@ To make this clearer, we could write the code like this:
 
 Now, if we run the application, we will see that we can drag the cards.
 
-But, when we drag the card, it looks a bit odd; there’s nothing indicating which card is being dragged. Let’s do something about that by playing with the opacity to show the card a bit faded.
+But, when we drag the card, it looks a bit odd; there’s nothing indicating which card is being dragged. Let’s do something about that by playing with the opacity to show the original card that is being dragged a bit faded.
 
 _./src/kanban/components/card/card.component.tsx_
 
