@@ -355,4 +355,4 @@ Next steps... The goal of this example is for you to get familiar with this drag
   - Move columns.
 - Another option is to create a richer card.
 
-We will see some of these improvements in the next examples... :)
+We will cover some of these improvements in the next examples... :)
