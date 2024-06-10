@@ -102,7 +102,7 @@ _./src/kanban/components/card/card.component.tsx_
 
 Now we have the bottom part left, the _empty-space-drop-zone_.
 
-_./src/kanban/components/empty-space-drop-zone/empty-space-drop-zone.component.tsx_
+_./src/kanban/components/empty-space-drop-zone.component.tsx_
 
 ```diff
 - import { useEffect, useRef } from "react";
