@@ -8,6 +8,8 @@ Por lo tanto, podemos colocar un monitor dentro de un `useEffect` en el nivel su
 
 Para lograr esto, primero necesitamos exponer la ubicación de las casillas dentro del objetivo de soltado, como hicimos para las piezas arrastrables en el paso anterior:
 
+![Demostración del moviento de las piezas](./public/03-step-3-example.gif)
+
 _./src/board/components/square.component.tsx_
 
 ```diff
@@ -84,6 +86,8 @@ export function Chessboard() {
 +          }
 +        },
 +      });
++    // Añadir 'pieces' como dependencias garantiza que el efecto se vuelva a ejecutar
++    // cada vez que la ubicación o las piezas cambien, manteniendo actualizada la lógica del target.
 +    }, [pieces]);
 
   return <div className={styles.board}>{renderSquares(pieces)}</div>;
