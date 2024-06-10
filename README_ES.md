@@ -34,15 +34,15 @@ Esperamos que estas mejoras te hagan más fácil seguir el tutorial y pues apren
 
 ![Tablero de ajedrez con un rey y un peón, puedes arrastrar y soltar ambas piezas; si el destino del movimiento es válido, se coloreará en verde; si no, en rojo.](./00-chessboard/03-step-3-moving-the-pieces/public/03-step-3-example.gif)
 
-This [example is taken from its original tutorial](https://atlassian.design/components/pragmatic-drag-and-drop/tutorial). What are the differences from the original?
+Este [ejemplo parte de su tutorial original](https://atlassian.design/components/pragmatic-drag-and-drop/tutorial). ¿Cuáles son las diferencias con respecto al original?
 
-    - The Emotion dependency has been removed and simple CSS has been used.
+- Se ha eliminado la dependencia de Emotion y se ha utilizado CSS simple.
 
-    - The code has been organized into folders and files to make it more modular and easier to understand.
+- El código se ha organizado en carpetas y archivos para hacerlo más modular y fácil de entender.
 
-    - A step-by-step guide in markdown format has been created so you can easily reproduce the example.
+- Se ha creado una guía paso a paso en formato markdown para que puedas reproducir el ejemplo fácilmente.
 
-    - The guide is also translated into Spanish so you can follow the example in your native language.
+- La guía también está traducida al español para que puedas seguir el ejemplo en tu idioma nativo.
 
 ### Simple Kanban Board
 
@@ -52,15 +52,15 @@ Este ejemplo muestra como implementar un tablero Kanban Simple, el objetivo de e
 
 Qué se ha implementado:
 
-    - Un punto de partida (se muestran columnas y tarjetas).
+- Un punto de partida (se muestran columnas y tarjetas).
 
-    - Cómo hacer drag de las cartas.
+- Cómo hacer drag de las cartas.
 
-    - Cómo hacer drop en las columnas (y por qué no es buena del todo la solución).
+- Cómo hacer drop en las columnas (y por qué no es buena del todo la solución).
 
-    - Cómo hacer drop en las cards.
+- Cómo hacer drop en las cards.
 
-    - Cómo mostrar una card _fantasma_ mientras se hace drag, para indicar donde se va a soltar la card.
+- Cómo mostrar una card _fantasma_ mientras se hace drag, para indicar donde se va a soltar la card.
 
 > Este kanban es `Work in Progress` ahora mismo hay cinco pasos implementados, en el futuro iremos añadiendo más mejoras.
 

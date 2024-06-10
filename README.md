@@ -33,13 +33,13 @@ We hope these improvements will make it easier for you to follow along and learn
 
 This [example is taken from its original tutorial](https://atlassian.design/components/pragmatic-drag-and-drop/tutorial). What are the differences from the original?
 
-    - The Emotion dependency has been removed and simple CSS has been used.
+ - The Emotion dependency has been removed and simple CSS has been used.
 
-    - The code has been organized into folders and files to make it more modular and easier to understand.
+ - The code has been organized into folders and files to make it more modular and easier to understand.
 
-    - A step-by-step guide in markdown format has been created so you can easily reproduce the example.
+- A step-by-step guide in markdown format has been created so you can easily reproduce the example.
 
-    - The guide is also translated into Spanish so you can follow the example in your native language.
+- The guide is also translated into Spanish so you can follow the example in your native language.
 
 ### Simple Kanban Board
 
@@ -49,15 +49,15 @@ This example shows how to implement a simple Kanban board. The goal of this code
 
 What has been implemented:
 
-    - A starting point (columns and cards are displayed).
+- A starting point (columns and cards are displayed).
 
-    - How to drag the cards.
+- How to drag the cards.
 
-    - How to drop in the columns (and why the solution is not entirely good).
+- How to drop in the columns (and why the solution is not entirely good).
 
-    - How to drop on the cards.
+- How to drop on the cards.
 
-    - How to show a _ghost_ card while dragging to indicate where the card will be dropped.
+- How to show a _ghost_ card while dragging to indicate where the card will be dropped.
 
 > This Kanban is a `Work in Progress`. Currently, five steps have been implemented, and more improvements will be added in the future.
 
