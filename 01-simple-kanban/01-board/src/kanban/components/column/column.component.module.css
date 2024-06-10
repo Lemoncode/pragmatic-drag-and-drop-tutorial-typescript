@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  align-items: center;
+  width: 250px; /* TODO: relative sizes or media queries?*/
+  height: 100vh; /* TODO: review height, shouldn't be 100vh*/
+  overflow: hidden; /*TODO: scroll? */
+  border: 1px solid rgb(4, 1, 19); /* TODO: Theme colors, variables, CSS API? */
+  background-color: aliceblue;
+  color: black;
+}
