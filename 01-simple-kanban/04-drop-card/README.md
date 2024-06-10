@@ -1,10 +1,10 @@
 # 04 Drop Card
 
-Let's implement the drop area on the cards, so we can intersperse cards when dropping them.
+Let's implement the drop area in the cards so we can drop cards between them..
 
 ## Step by Step
 
-We start from the previous example, copy it, install dependencies, and run the project.
+We start from the previous example, you can copy it, install dependencies, and run the project.
 
 ```bash
 npm install
@@ -43,7 +43,7 @@ _./src/kanban/components/column/column.component.tsx_
   ))}
 ```
 
-Now that we have it, the only thing we are going to do is remove the drop from the column and pass it to the card (informing the column).
+Now that we have it informed, the only thing we are going to do is remove the drop from the column and pass it to the card (informing the column).
 
 _./src/kanban/components/column/column.component.tsx_
 
@@ -151,7 +151,7 @@ export const Card: React.FC<Props> = (props) => {
 
 ```
 
-And in the monitor, we have to consider the new _cardId_ field to exchange it in the drop.
+And in the monitor, we have to take into account the new _cardId_ field just to use it in the drop.
 
 _./src/kanban/kanban.container.tsx_
 
@@ -179,7 +179,7 @@ _./src/kanban/kanban.container.tsx_
 
 ```
 
-We need to modify the business function so as not to complicate ourselves too much with immutable updates, let's use the _immer_ library.
+We need to modify the business function so as not to complicate ourselves too much with immutable updates, let's use the _immer_ library (in case you haven't installed before).
 
 ```bash
 npm install immer
@@ -259,9 +259,9 @@ We test:
 npm run dev
 ```
 
-It seems to work, but if we drop the card at the bottom of the column, we can see that the drop is not performed. What's happening here? Well, there's no drop zone there. We fix this by creating a kind of empty card at the bottom of the column that occupies all the empty space.
+It seems to work, but there's an edge case not working: if we drop the card at the bottom of the column, we can see that the drop is not performed. What's happening here? Well, there's no drop zone there. We fix this by creating a kind of empty card at the bottom of the column that occupies all the empty space.
 
-Let's do something, we paint it a color so it's distinguishable, then we'll apply a transparent color.
+Let's do something, we fill that div with a give a color so it's temporary distinguishable, once we see it in action, we'll apply a transparent color.
 
 _./src/kanban/components/empty-space-drop-zone.component.tsx_
 
@@ -295,7 +295,7 @@ export const EmptySpaceDropZone: React.FC<Props> = (props) => {
 };
 ```
 
-Let's add it to the end of each column:
+Let's add it at the bottom of each column:
 
 _./src/kanban/components/column/column.component.tsx_
 
@@ -326,9 +326,9 @@ export const Column: React.FC<Props> = (props) => {
 };
 ```
 
-Now we test it and we have it.
+Now we test it and... Hey ! we got the edge case covereed !.
 
-Let's make it transparent:
+Let's make it transparent, so the user won't even notice what's going on:
 
 _./src/kanban/components/empty-space-drop-zone.component.tsx_
 
@@ -352,4 +352,7 @@ Next steps... The goal of this example is for you to get familiar with this drag
   - Add Card.
   - Delete Card.
   - Modify Card.
+  - Move columns.
 - Another option is to create a richer card.
+
+We will see some of these improvements in the next examples... :)
