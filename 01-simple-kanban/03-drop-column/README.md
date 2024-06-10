@@ -1,18 +1,16 @@
 # 03 Drop
 
-Vamos a implementar el drop, ¿Cual crees tu que debería ser al área \_droppable?
+We are going to implement the drop functionality. Which one do you think should be the _droppable_ area? Surely, the first thing that comes to mind is the columns... that makes perfect sense (or not? :) )
 
-Seguro que a bote pronto se te ocurre decir que las columnas... tiene todo el sentido.
+In this example, we will make the columns droppable, and when an element is dropped in a column, it will be added to the list of elements there.
 
-En este ejemplo vamos a hacer que las columnas sean droppables, y que al soltar un elemento en una columna, este se añada a la lista de elementos de la columna.
+Then we will find an issue and figure out what solution we have to apply.
 
-Después nos vamos a encontrar con un problema y enumeraremos que nos haría flata para dejarlo fino (por tema de tiempo no implementaramos ese camino complicado, aunque es buen ejercicio para el lector).
+In the next example, we will revisit and implement the drop functionality on the cards, see what problems are solved by following this approach, and learn the tricks we need to apply (there is no silver bullet).
 
-Y en el siguiente ejemplo _recogeremos carrete_ e implementaremos el drop en las cards y veremos que problemas resuelve esta aproximacíon y que trucos debemos de aplicar (no hay bala de plata).
+## Step by Step
 
-## Paso a paso
-
-Hemos dicho que ibamos a marcar el componente columna como `droppable`.
+We mentioned that we were going to mark the column component as `droppable`, let's go for that:
 
 _./src/kanban/components/column/column.component.tsx_
 
@@ -61,19 +59,19 @@ export const Column: React.FC<Props> = (props) => {
 };
 ```
 
-¿Qué estamos haciendo aquí?
+What are we doing here?
 
-- `DropTargetForElements` es una función que nos permite marcar un elemento como droppable.
-- Jugamos con los eventos `onDragEnter`, `onDragLeave` y `onDrop` para cambiar el color de fondo del contenedor de la columna y que sea vea que podemos soltar ahí contenido.
+- `dropTargetForElements` is a function that allows us to mark an element as droppable.
+- We use the events `onDragEnter`, `onDragLeave`, and `onDrop` to change the background color of the column container, indicating that we can drop content there.
 
-¿Pinta bien eh? Peeero si intentamos soltar, verás que no hace nada, nos hace falta hacer lo siguiente:
+Looks good, right? But if we try to drop, you'll see that nothing happens. We need to do the following:
 
-- Por un lado saber de que tarjeta estamos hablando.
-- Por otro en que columna estamos.
+- First, know which card we are talking about.
+- Second, know which column we are in.
 
-A fin de cuentas por detrás lo que tenemos es un array de columnas en las que para cada columna tenemos un array de cards.
+After all, behind the scenes, we have an array of columns, each of them containing an array of cards.
 
-Vamos primero a guardar la información de la tarjeta que estamos arrastrando, para ello nos vamos a component y le informamos del _id_ del card que estamos editando (podríamos también almacenar la columna para hacerlo más fácil).
+First, let’s store the information about the card we are dragging. To do this, we will inform Pragmatic drag and drop about _id_ of the card that we are dragging, in order to make that weill use the `getInitialData` property use in the `draggable` function param (we could also store the column to make it easier).
 
 _./src/kanban/components/card/card.component.tsx_
 
@@ -97,11 +95,11 @@ export const Card: React.FC<Props> = (props) => {
   }, []);
 ```
 
-Con esto cuando hagamos drag, tendremos la id de la card que se está arrastrando.
+By doing this, when we drag, we will have the id of the card that is being dragged.
 
-Y ¿El Drop? Cómo informo de la columna destino en la que estamos?
+And the drop? How do we inform about the destination column we are in?
 
-Lo primero vamos a pasar el id de la columna al column component:
+First, let’s pass the id of the column to the column component:
 
 _./src/kanban/components/kanban/column/column.component.tsx_
 
@@ -117,7 +115,7 @@ export const Column: React.FC<Props> = (props) => {
 + const { columnId, name, content } = props;
 ```
 
-Vamos a pasarselo desde el container:
+Let's pass it from the container:
 
 _./src/kanban/kanban.container.tsx_
 
@@ -133,13 +131,15 @@ _./src/kanban/kanban.container.tsx_
   );
 ```
 
-Y ahora en la columna, en el drop vamos a informar de la columna destino:
+Now, in the column, we will inform about the destination column on drop:
 
 _./src/kanban/components/column.component.tsx_
 
 ```diff
 export const Column: React.FC<Props> = (props) => {
-  const { name, content, columnId } = props;
+-  const { name, content } = props;
++ const { name, content, columnId } = props;
+
   const ref = useRef(null);
   const [isDraggedOver, setIsDraggedOver] = useState(false);
 
@@ -155,25 +155,25 @@ export const Column: React.FC<Props> = (props) => {
       onDrop: () => setIsDraggedOver(false),
     });
   }, []);
-
 ```
 
-Ya tenemos la info de lo que estamos arrastrando, y la info del destino donde queremos soltarlo.
+Now we have the information about what we are dragging and the destination where we want to drop it.
 
-Ahora nos queda detectar cuando se ha realizado el drop con éxito y actualizar el estado de la aplicación.
+Next, we need to detect when the drop has been successfully achieved and update the application state.
 
-Aquí hay una pieces que nos sirve de gran ayuda el _monitor_ de la librería de drag and drop, esto nos permite ponernos a monitorizar si ha habido un drop, y tener los datos del cardId de la columna destino, con lo que podemos actualizar nuestro estado de la aplicación y añadir la card a la columna destino.
+To do this the _monitor_ function from the drag-and-drop library is of great help. This allows us to monitor if a drop has occurred and obtain the data of the cardId and the destination column, allowing us to update our application state and add the card to the destination column.
 
-El sitio donde puede tener más sentido añadir este monitor es en el _kanban.container.tsx_ ya que allí tenemos el estado del kanban content.
+The most logical place to add this monitor is in the _kanban.container.tsx_ since that’s where we have the kanban content state.
 
-Para no guarrear el container con lógica de negocios vamos a crear una función con TypeScript plano que se encargue de actualizar las listas de cards (está función es ideal para desarrollarlo siguiendo TDD).
+To avoid cluttering the container with business logic, we will create a plain TypeScript function to update the card lists (this function is ideal to develop following TDD).
 
 _./src/kanban/kanban.business.ts_
 
 ```typescript
 import { CardContent, KanbanContent } from "./model";
 
-// Esto se podría hacer más optimo
+// Just vanilla TypeScript, no React or Pragmatic Drag and Drop here
+// This could be implemented in a more optimal way
 
 const removeCardFromColumn = (
   card: CardContent,
@@ -225,9 +225,9 @@ export const moveCard = (
 };
 ```
 
-Vamos ahora a utilizar esta función en el container:
+Let's now use this function in the container:
 
-Fijate que en el `useEffect` que usamos le decimos que salta como dependencia cuando `kanbanContent` cambie, esto lo hacemos para evitar que se queda con datos antiguos de `kanbanContent` y no se actualice bien.
+Note that in the `useEffect`, we specify that it gets triggered when `kanbanContent` changes. We do this to avoid working with outdated `kanbanContent` data, ensuring proper updates.
 
 _./src/kanban/kanban.container.tsx_
 
@@ -257,14 +257,14 @@ export const KanbanContainer: React.FC = () => {
 +      onDrop({ source, location }) {
 +        const destination = location.current.dropTargets[0];
 +        if (!destination) {
-+          // si se suelta fuera de cualquier target
++          // if dropped outside any target
 +          return;
 +        }
 +
 +        const card = source.data.card as CardContent;
 +        const columnId = destination.data.columnId as number;
 +
-+        // También aquí nos aseguramos de que estamos trabajando con el último estado
++        // Just to ensure we are working with the latest state (that why use the function form)
 +        setKanbanContent((kanbanContent) =>
 +          moveCard(card, columnId, kanbanContent)
 +        );
@@ -274,11 +274,11 @@ export const KanbanContainer: React.FC = () => {
 
    return (
      <div className={classes.container}>
-
 ```
 
-Vamos a modificar el business para que en el -1 lo ponga al final de la columna.
-Toca modificar la función de negocio, para no liarnos demasiado con actualizaciones inmutables, vamos a instalar la librería _immer_.
+Let's modify the business logic to place the card at the end of the column for the card id value -1.
+
+Is time to modify the business function. To avoid too much complexity with immutable updates, we will install the _immer_ library.
 
 ```bash
 npm install immer
@@ -335,33 +335,30 @@ const addCardToColumn = (
     columns: newColumns,
   };
 };
-
 ```
 
-Si ahora lo probamos
+If we now try it
 
 ```bash
 npm run dev
 ```
 
-Parece que funciona bien, podemos arrastrar y soltar, peeeroooo....
+It seems to work well; we can drag and drop, but...
 
-El diablo está en los detalles ¿Qué pasa si queremos intercalar la card entre dos existentes de otra columna? Aquí siempre se añade al final.
+The devil is in the details. What if we want to insert the card between two existing ones instead of appending the card at the bottom of the column? right now, it always adds it at the end.
 
-Esto se convierte en un follón ¿Cómo podríamos solucionarlo?
+This becomes tricky. How could we solve it?
 
-- Cuando se hace drop capturar la posición del ratón.
-- Guardar un array de ref de los divs que contienen cada card en la columna destino.
-- Recorrer con un bucle y comprobar si la posición del ratón está entre dos elementos.
-- Insertarlo allí (y si está por debajo de la última card añadilo al final, lo mismo con el principio)
+- Capture the mouse position when the drop occurs.
+- Save an array of refs for the divs containing each card in the destination column.
+- Iterate through them and check if the mouse position is inbetween two elements.
+- Insert it there (and if it’s below the last card, add it to the end, the same with the top scenario).
 
-Esto tiene su trabajo y complejidad, es un buen ejercicio meterse en este jardin.
+This is quite complex. Could we make it easier? Yes! If instead of dropping on columns, why don't we drop on cards?
 
-Ahora vamos darle al coco ¿No hay manera más sencilla de hacer esto? SIIII.... Y si en vez de hacer Drop en las columnas, lo hacemos en las cards, ¿Qué pasaría?
+- We could easily insert the cards.
+- For the bottom part of the column (if there is blank space available), we could create an invisible card to occupy that space and serve as a drop area.
 
-- Podríamos intercalar las cards sin problemas.
-- Para la parte final de la columna (si hay un espacio en blanco) podemos crear una card invisible que ocupe ese espacio y sirva como area de drop.
+> If we want to refine more, we can split the card into three areas to see if we should drop it right before the top or after the bottom of the card.
 
-> Si queremos afinar más podemos partir la card en tres areas para ver dependiendo de la parte en la que estemos se haga el drop en la parte de arriba o en la de abajo.
-
-Esto lo vamos a ver en el siguiente ejemplo.
+We will see this in the next example.
