@@ -1,4 +1,4 @@
-# 01 Drop Card
+# 04 Drop Card
 
 Vamos a implementar el area de drop en las cards, así podremos interecalar cards al soltaras.
 
