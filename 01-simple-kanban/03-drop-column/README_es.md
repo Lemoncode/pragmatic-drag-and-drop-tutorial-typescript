@@ -63,7 +63,7 @@ export const Column: React.FC<Props> = (props) => {
 
 ¿Qué estamos haciendo aquí?
 
-- `DropTargetForElements` es un hook que nos permite marcar un elemento como droppable.
+- `DropTargetForElements` es una función que nos permite marcar un elemento como droppable.
 - Jugamos con los eventos `onDragEnter`, `onDragLeave` y `onDrop` para cambiar el color de fondo del contenedor de la columna y que sea vea que podemos soltar ahí contenido.
 
 ¿Pinta bien eh? Peeero si intentamos soltar, verás que no hace nada, nos hace falta hacer lo siguiente:
