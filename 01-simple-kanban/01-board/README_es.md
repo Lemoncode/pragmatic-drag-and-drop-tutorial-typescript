@@ -332,13 +332,13 @@ _./app.css_
 
 Ahora ejecutamos y ya podemos ver que ocupa bastante espacio :).
 
-![Kanban component taking horizontal space](./public/03-board.jpg)
-
 ```bash
 npm run dev
 ```
 
 ✅ Somos capaces de mostrar un contenedor vacio...
+
+![Kanban component taking horizontal space](./public/03-board.jpg)
 
 Vamos a definir el componente de columnas:
 
@@ -404,6 +404,8 @@ export const Column: React.FC<Props> = (props) => {
 
 > Pregunta aquí... ¿Merecería la pena exponer la columna en el barrel?
 
+> Para simplificar el ejemplo, no se van a añadir test unitarios ni de componentes, pero si empezamos a trabajar en un proyecto real debemos añadirlos.
+
 - Ya nos falta tiempo para probarlo :), vamos a integrarlo en nuestro contenedor de _Kanban_:
 
 _./src/kanban/kanban.container.tsx_
@@ -440,6 +442,8 @@ npm run dev
 ```
 
 ✅ Somos capaces de mostrar las columnas del _kanban_...
+
+![Kanban component showing column content](./public/04-board.jpg)
 
 Esto empieza a tener buena pinta, ahora vamos a por el componente de _card_:
 
@@ -512,6 +516,8 @@ npm run dev
 
 ✅ Somos capaces de mostrar las _cards_...
 
+![Kanban component showing column and cards](./public/05-board.jpg)
+
 - Ya tenemos nuestro tablero montado, es hora de ver cómo va quedando nuestra carpeta _kanban_ parece que hay muchos ficheros, sería buena idea organizar un poco, vamos a crear dos carpetas:
 - _components_: donde meteremos los componentes que no son contenedores.
 - _api_: donde meteremos los ficheros que se encargan de la comunicación
@@ -525,8 +531,6 @@ _./src/kanban/components/index.ts_
 export * from "./card";
 export * from "./column";
 ```
-
-> Hay que crear los barrer para la subcarpeta card y column
 
 _./src/kanban/api/index.ts_
 

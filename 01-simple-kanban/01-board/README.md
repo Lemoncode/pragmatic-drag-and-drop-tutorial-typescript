@@ -305,6 +305,8 @@ export const App = () => {
 
 It's time to test that this works (you will see a rectangle with three titles)... it seems like a small thing but with less code I have committed bigger mistakes :), in fact first issue... the kanban does not take up the entire screen, but this is more an application lelve issue, the main `html` _body_ is a flex container, and we have to tell the root _div_ to take up all the space available (we can set a _flex_ to 1), you can play bit with the devtools and check results.
 
+![Kanban component without taking all horizontal space](./public/02-board.jpg)
+
 Let's change it in the style sheet.
 
 _./app.css_
@@ -327,6 +329,8 @@ npm run dev
 
 ✅ We are able to show an empty container...
 
+![Kanban component taking horizontal space](./public/03-board.jpg)
+
 Let's define the columns component:
 
 - Let's go for the styling.
@@ -338,7 +342,7 @@ About the style:
 
 - For the sake of simplicity it will have a fixed width (add a big TODO here, just to enhance this in the future, and for instance include some _media queries_ and different card sizes, depending on the screen size).
 
-- We will add _overflow_ in case there are more _cards_ than space in the column (one more big TODO, just to cover it later on).
+- We will add _overflow_ (in case there are more _cards_ than space in the column, right now overflow is going to be hidden but we could change to scroll behaviour in future).
 
 - We add a background color to each column (one more TODO, in the future this colors should come from some theming or API).
 
@@ -389,6 +393,8 @@ export const Column: React.FC<Props> = (props) => {
 };
 ```
 
+> Question: Should we include this component in the barrel file?
+
 > For the sake of simplicity and taking into account that this is an spike we won't add unit testing or component testing, but if we start working in the real codebase we should add all the proper testing.
 
 - Let's integrate it into our _Kanban_ container:
@@ -426,7 +432,9 @@ import classes from "./container.css";
 npm run dev
 ```
 
-✅ We are able to show the _kanban_ columns...
+✅ We are able to show the _kanban_ columns..
+
+![Kanban component showing column content](./public/04-board.jpg).
 
 Things start to look god, now let's go for the _card_ component:
 
@@ -498,6 +506,8 @@ npm run dev
 ```
 
 ✅ We are able to show the _cards_...
+
+![Kanban component showing column and cards](./public/05-board.jpg)
 
 - We already have our board set up, it's time to see how our _kanban_ folder is looking. It seems that there are many files, it would be a good idea to organize this a little bit, let's create two subfolders:
 
