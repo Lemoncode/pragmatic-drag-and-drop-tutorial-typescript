@@ -203,7 +203,7 @@ export const loadKanbanContent = async (): Promise<KanbanContent> => {
 
 - Ayudamos a evitar que el componente se vuelva un monstruo: el típico fichero con 5000 lineas de código, con un _sphaguetti_.
 
-- Al aislar código en fichero TS ya sabemos que no es dependiente de React y un compañero que no sepa React puede trabajar en esa parte sin problemas.
+- Al aislar código en fichero TS ya sabemos que no es dependiente de React y un compañero que no sepa React puede trabajar en esa parte sin problemas o reutilizarlo en una aplicación de servidor para `Node.js` o un aplicación de `Vue` etc...
 
 - Es más fácil de testear, tenemos piezas que hacen una cosa y una sola cosa.
 
@@ -314,6 +314,8 @@ export const App = () => {
 
 Es hora de probar que esto funciona (se ve un rectángulo con tres títulos)... parece poca cosa pero con menos código he metido fallos grandes :), de hecho primer patón, no ocupa toda la pantalla el kanban, pero esto es más problema de aplicación, el _body_ es un contenedor flex ,y tenemos que decirle al _div_ root que ocupe todo el espacio que pueda (podemos ponerle un _flex_ a 1), para esto podemos jugar con las dev tools.
 
+![Kanban component without taking all horizontal space](./public/02-board.jpg)
+
 Vamos a cambiarlo en la hoja de estilos.
 
 _./app.css_
@@ -329,6 +331,8 @@ _./app.css_
 ```
 
 Ahora ejecutamos y ya podemos ver que ocupa bastante espacio :).
+
+![Kanban component taking horizontal space](./public/03-board.jpg)
 
 ```bash
 npm run dev
@@ -347,7 +351,7 @@ Sobre el estilado:
 
 - Para la prueba va a tener un ancho fijo (apuntar martillo fino para después si añadir media queries para poner un ancho relativo o por porcentajes).
 
-- Le pondremos _overflow_ por si hubiera más _cards_ que espacio en la columna (martillo fino todo, resolver esto cuando se integre en real)
+- Le pondremos _overflow_ (por si hubiera más _cards_ que espacio en la columna ahora mismo el overflow será hidden, pero podríamos configurarlo con scroll behaviour)
 
 - Le añadimos un color de fondo a cada columna (TODO martillo fino aquí, o bien en la aplicación real usar los colores que vengan, o bien exponer una API de CSS / tematizado o mediante variables HTML).
 
