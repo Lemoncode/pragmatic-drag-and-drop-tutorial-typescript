@@ -2,7 +2,7 @@
 
 Ya tenemos un tablero básico, vamos a por el primer paso, poder arrastrar una tarjeta.
 
-![Arrastrando una tarjeta con el ratón](./public/02-drag.gif)
+![Arrastrando una tarjeta con el ratón](./public/02-drag-1.gif)
 
 ## Paso a paso
 
@@ -79,11 +79,14 @@ https://github.com/alexreardon/tiny-invariant/blob/master/src/tiny-invariant.ts
 
 Vamos a pararnos a estudiar el código del `useEffect` en concreto de la función de cleanup.
 
-Si te fijas puedes pensar ¿Oye la funcióna de cleanup solo se ejecuta cunado el componente se desmonta? Aquí hay un truco, la función `draggable` la ejecutamos (fijate en los parentesis del final) y devuelve una funcióna de cleanup, con lo que: - En el primer render, se ejecuta `draggable` y se devuelve la función de cleanup. - Cuando se desmonte el componente se ejecutara la función de cleanup que devolvio draggable.
+Si te fijas puedes pensar ¿Oye la funcióna de cleanup solo se ejecuta cunado el componente se desmonta? Aquí hay un truco, la función `draggable` la ejecutamos (fijate en los parentesis del final) y devuelve una funcióna de cleanup, con lo que:
+
+- En el primer render, se ejecuta `draggable` y se devuelve la función de cleanup.
+- Cuando se desmonte el componente se ejecutara la función de cleanup que devolvio draggable.
 
 Para verlo más claro podríamos escribir el código de esta manera:
 
-** Sólo ponerlo para entenderlo, después volver a funcióna anterior **
+**Sólo ponerlo para entenderlo, después volver a funcióna anterior**
 
 ```diff
   useEffect(() => {
@@ -103,6 +106,8 @@ Para verlo más claro podríamos escribir el código de esta manera:
 ```
 
 Ahora si, si ejecutamos la aplicación, veremos que podemos arrastrar las tarjetas.
+
+![Arrastrando una card con el mouse](./public/02-drag-2.gif)
 
 Peeeroooo, si arrastramos la tarjeta, se hace un poco raro, no hay nada que te indique que tarjeta es la que se está arrastrando, vamos a hacer una cosa, jugamos con la opacidad para mostrar esa tarjeta un poco difuminada.
 
@@ -140,5 +145,7 @@ export const Card: React.FC<Props> = (props) => {
 ```
 
 Fijate que ahora si se marca.
+
+![Arrastrando una card con el mouse con opacity](./public/02-drag-3.gif)
 
 ¿Vamos a por el drop?

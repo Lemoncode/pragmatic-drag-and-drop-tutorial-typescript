@@ -2,7 +2,7 @@
 
 We already have a basic board, let's go for the first step, let the user drag a card.
 
-![Dragging a card using the mouse](./public/02-drag.gif)
+![Dragging a card using the mouse](./public/02-drag-1.gif)
 
 ## Step by step
 
@@ -105,6 +105,8 @@ To make this clearer, we could write the code like this:
 
 Now, if we run the application, we will see that we can drag the cards.
 
+![Dragging a card using the mouse](./public/02-drag-2.gif)
+
 But, when we drag the card, it looks a bit odd; there’s nothing indicating which card is being dragged. Let’s do something about that by playing with the opacity to show the original card that is being dragged a bit faded.
 
 _./src/kanban/components/card/card.component.tsx_
@@ -141,5 +143,7 @@ export const Card: React.FC<Props> = (props) => {
 ```
 
 Now you can see that it highlights.
+
+![Dragging a card using the mouse with opacity](./public/02-drag-3.gif)
 
 Shall we go for the drop?
