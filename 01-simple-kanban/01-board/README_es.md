@@ -4,7 +4,7 @@ Vamos a crear un ejemplo simple de Kanban, el objetivo de este ejemplo es el de 
 
 En este ejemplo vamos a implementar un tablero kanban simple:
 
-![Tablero de Kanban con tres columnts, backlog y done. Cada columna incluye cards](./public/01-board.jpg)
+![Tablero de Kanban con tres columnts, backlog y done. Cada columna incluye cards](./public/01-board-01.jpg)
 
 # Paso a paso
 
@@ -314,7 +314,7 @@ export const App = () => {
 
 Es hora de probar que esto funciona (se ve un rectángulo con tres títulos)... parece poca cosa pero con menos código he metido fallos grandes :), de hecho primer patón, no ocupa toda la pantalla el kanban, pero esto es más problema de aplicación, el _body_ es un contenedor flex ,y tenemos que decirle al _div_ root que ocupe todo el espacio que pueda (podemos ponerle un _flex_ a 1), para esto podemos jugar con las dev tools.
 
-![Componente de Kanban sin ocupar todo el ancho](./public/02-board.jpg)
+![Componente de Kanban sin ocupar todo el ancho](./public/01-board-02.jpg)
 
 Vamos a cambiarlo en la hoja de estilos.
 
@@ -338,7 +338,7 @@ npm run dev
 
 ✅ Somos capaces de mostrar un contenedor vacio...
 
-![Componente de kanban tomando todo el espacio horizontal](./public/03-board.jpg)
+![Componente de kanban tomando todo el espacio horizontal](./public/01-board-03.jpg)
 
 Vamos a definir el componente de columnas:
 
@@ -443,7 +443,7 @@ npm run dev
 
 ✅ Somos capaces de mostrar las columnas del _kanban_...
 
-![Componente de kanban mostrando column content](./public/04-board.jpg)
+![Componente de kanban mostrando column content](./public/01-board-04.jpg)
 
 Esto empieza a tener buena pinta, ahora vamos a por el componente de _card_:
 
@@ -516,7 +516,7 @@ npm run dev
 
 ✅ Somos capaces de mostrar las _cards_...
 
-![Componente de kanban mostrando columnas y cards](./public/05-board.jpg)
+![Componente de kanban mostrando columnas y cards](./public/01-board-05.jpg)
 
 - Ya tenemos nuestro tablero montado, es hora de ver cómo va quedando nuestra carpeta _kanban_ parece que hay muchos ficheros, sería buena idea organizar un poco, vamos a crear dos carpetas:
 - _components_: donde meteremos los componentes que no son contenedores.

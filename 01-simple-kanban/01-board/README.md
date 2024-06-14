@@ -8,7 +8,7 @@ This example takes the _00-boilerplate_ as a starting point, you can copy it to 
 
 In this step we will implement a simple static kanban board:
 
-![Kanban board with three columns, backlog, doing, and done, and each column includes cards](./public/01-board.jpg)
+![Kanban board with three columns, backlog, doing, and done, and each column includes cards](./public/01-board-01.jpg)
 
 ## Data model and api
 
@@ -305,7 +305,7 @@ export const App = () => {
 
 It's time to test that this works (you will see a rectangle with three titles)... it seems like a small thing but with less code I have committed bigger mistakes :), in fact first issue... the kanban does not take up the entire screen, but this is more an application lelve issue, the main `html` _body_ is a flex container, and we have to tell the root _div_ to take up all the space available (we can set a _flex_ to 1), you can play bit with the devtools and check results.
 
-![Kanban component without taking all horizontal space](./public/02-board.jpg)
+![Kanban component without taking all horizontal space](./public/01-board-02.jpg)
 
 Let's change it in the style sheet.
 
@@ -329,7 +329,7 @@ npm run dev
 
 ✅ We are able to show an empty container...
 
-![Kanban component taking horizontal space](./public/03-board.jpg)
+![Kanban component taking horizontal space](./public/01-board-03.jpg)
 
 Let's define the columns component:
 
@@ -434,7 +434,7 @@ npm run dev
 
 ✅ We are able to show the _kanban_ columns..
 
-![Kanban component showing column content](./public/04-board.jpg).
+![Kanban component showing column content](./public/01-board-04.jpg).
 
 Things start to look god, now let's go for the _card_ component:
 
@@ -507,7 +507,7 @@ npm run dev
 
 ✅ We are able to show the _cards_...
 
-![Kanban component showing column and cards](./public/05-board.jpg)
+![Kanban component showing column and cards](./public/01-board-05.jpg)
 
 - We already have our board set up, it's time to see how our _kanban_ folder is looking. It seems that there are many files, it would be a good idea to organize this a little bit, let's create two subfolders:
 
