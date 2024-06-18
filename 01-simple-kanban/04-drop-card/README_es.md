@@ -2,7 +2,7 @@
 
 Vamos a implementar el area de drop en las cards, así podremos intercalar cards al soltaras.
 
-![Insertar la carta entre otras cartas](./public/04-drop-card.gif)
+![Insertar la carta entre otras cartas](./public/04-drop-card-01.gif)
 
 ## Paso a paso
 
@@ -262,6 +262,8 @@ npm run dev
 ```
 
 Parece que fucniona, peeeerooo si soltamos al card en el fondo de la columna podemos ver que no se hace el drop ¿Qué pasa aquí? Pues que ahí no ha zona de drop, lo arreglamos creando una especia de card vacía en el fondo de la columna que ocupe todo el espacio libre.
+
+![Error cuando soltamos la card al final de la column](./public/04-drop-card-02.gif)
 
 Vamos a hacer un cosa la pintamos de un color para que se distinga, despues le aplicaremos color transparente.
 
