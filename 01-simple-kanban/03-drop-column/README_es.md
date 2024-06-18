@@ -14,7 +14,7 @@ Y en el siguiente ejemplo _recogeremos carrete_ e implementaremos el drop en las
 
 ## Paso a paso
 
-Hemos dicho que ibamos a marcar el componente columna como `droppable`.
+Hemos dicho que ibamos a marcar el componente columna como `droppable`, Vamos a ello:
 
 _./src/kanban/components/column/column.component.tsx_
 
@@ -68,7 +68,9 @@ export const Column: React.FC<Props> = (props) => {
 - `DropTargetForElements` es una función que nos permite marcar un elemento como droppable.
 - Jugamos con los eventos `onDragEnter`, `onDragLeave` y `onDrop` para cambiar el color de fondo del contenedor de la columna y que sea vea que podemos soltar ahí contenido.
 
-¿Pinta bien eh? Peeero si intentamos soltar, verás que no hace nada, nos hace falta hacer lo siguiente:
+¿Pinta bien eh? Peeero si intentamos soltar, verás que no hace nada.
+
+Nos hace falta hacer lo siguiente:
 
 - Por un lado saber de que tarjeta estamos hablando.
 - Por otro en que columna estamos.
@@ -164,7 +166,7 @@ Ya tenemos la info de lo que estamos arrastrando, y la info del destino donde qu
 
 Ahora nos queda detectar cuando se ha realizado el drop con éxito y actualizar el estado de la aplicación.
 
-Aquí hay una pieces que nos sirve de gran ayuda el _monitor_ de la librería de drag and drop, esto nos permite ponernos a monitorizar si ha habido un drop, y tener los datos del cardId de la columna destino, con lo que podemos actualizar nuestro estado de la aplicación y añadir la card a la columna destino.
+Para hacer esto nos servimos del _monitor_ de la librería de drag and drop, esto nos permite ponernos a monitorizar si ha habido un drop, y tener los datos del cardId de la columna destino, con lo que podemos actualizar nuestro estado de la aplicación y añadir la card a la columna destino.
 
 El sitio donde puede tener más sentido añadir este monitor es en el _kanban.container.tsx_ ya que allí tenemos el estado del kanban content.
 
@@ -175,6 +177,7 @@ _./src/kanban/kanban.business.ts_
 ```typescript
 import { CardContent, KanbanContent } from "./model";
 
+// Usamos TS vanilla, no utilizamos React ni la librería de Pragamatic Drag and Drop.
 // Esto se podría hacer más optimo
 
 const removeCardFromColumn = (

@@ -1,12 +1,14 @@
 # 03 Drop
 
-We are going to implement the drop functionality. Which one do you think should be the _droppable_ area? Surely, the first thing that comes to mind is the columns... that makes perfect sense (or not? :) )
+We are going to implement the drop functionality. Which one do you think should be the _droppable_ area?
+
+Surely, the first thing that comes to mind is the columns... that makes perfect sense (or not? :) )
 
 ![Drag a card and drop it into a column](./public/03-drop-column.gif)
 
 In this example, we will make the columns droppable, and when an element is dropped in a column, it will be added to the list of elements there.
 
-Then we will find an issue and figure out what solution we have to apply.
+Then we will find an issue and figure out what solution we have to apply (for the sake of simplicity we will not implement that complicated path, although could be a good exercise for the reader).
 
 In the next example, we will revisit and implement the drop functionality on the cards, see what problems are solved by following this approach, and learn the tricks we need to apply (there is no silver bullet).
 
@@ -66,7 +68,10 @@ What are we doing here?
 - `dropTargetForElements` is a function that allows us to mark an element as droppable.
 - We use the events `onDragEnter`, `onDragLeave`, and `onDrop` to change the background color of the column container, indicating that we can drop content there.
 
-Looks good, right? But if we try to drop, you'll see that nothing happens. We need to do the following:
+Looks good, right? But if we try to drop, you'll see that nothing happens. 
+
+
+We need to do the following:
 
 - First, know which card we are talking about.
 - Second, know which column we are in.
