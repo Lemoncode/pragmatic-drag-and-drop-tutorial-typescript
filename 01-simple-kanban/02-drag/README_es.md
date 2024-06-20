@@ -2,7 +2,7 @@
 
 Ya tenemos un tablero básico, vamos a por el primer paso, poder arrastrar una tarjeta.
 
-![Arrastrando una tarjeta con el ratón](./public/02-drag-1.gif)
+![Arrastrando una tarjeta con el ratón](./public/02-drag-01.gif)
 
 ## Paso a paso
 
@@ -107,7 +107,7 @@ Para verlo más claro podríamos escribir el código de esta manera:
 
 Ahora si, si ejecutamos la aplicación, veremos que podemos arrastrar las tarjetas.
 
-![Arrastrando una card con el mouse](./public/02-drag-2.gif)
+![Arrastrando una card con el mouse](./public/02-drag-02.gif)
 
 Peeeroooo, si arrastramos la tarjeta, se hace un poco raro, no hay nada que te indique que tarjeta es la que se está arrastrando, vamos a hacer una cosa, jugamos con la opacidad para mostrar esa tarjeta un poco difuminada.
 
@@ -146,6 +146,6 @@ export const Card: React.FC<Props> = (props) => {
 
 Fijate que ahora si se marca.
 
-![Arrastrando una card con el mouse con opacity](./public/02-drag-3.gif)
+![Arrastrando una card con el mouse con opacity](./public/02-drag-03.gif)
 
 ¿Vamos a por el drop?
