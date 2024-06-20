@@ -4,7 +4,7 @@ Vamos a crear un ejemplo simple de Kanban, el objetivo de este ejemplo es el de 
 
 En este ejemplo vamos a implementar un tablero kanban simple:
 
-![Tablero de Kanban con tres columnts, backlog y done. Cada columna incluye cards](./public/01-board-01.jpg)
+![Tablero de Kanban con tres columnas: backlog, doing y done. Cada columna incluye cards](./public/01-board-01.jpg)
 
 # Paso a paso
 
@@ -338,7 +338,7 @@ npm run dev
 
 ✅ Somos capaces de mostrar un contenedor vacio...
 
-![Componente de kanban tomando todo el espacio horizontal](./public/01-board-03.jpg)
+![Componente de Kanban tomando todo el espacio horizontal](./public/01-board-03.jpg)
 
 Vamos a definir el componente de columnas:
 
@@ -443,7 +443,7 @@ npm run dev
 
 ✅ Somos capaces de mostrar las columnas del _kanban_...
 
-![Componente de kanban mostrando column content](./public/01-board-04.jpg)
+![Componente de Kanban mostrando column content](./public/01-board-04.jpg)
 
 Esto empieza a tener buena pinta, ahora vamos a por el componente de _card_:
 
@@ -516,7 +516,7 @@ npm run dev
 
 ✅ Somos capaces de mostrar las _cards_...
 
-![Componente de kanban mostrando columnas y cards](./public/01-board-05.jpg)
+![Componente de Kanban mostrando columnas y cards](./public/01-board-05.jpg)
 
 - Ya tenemos nuestro tablero montado, es hora de ver cómo va quedando nuestra carpeta _kanban_ parece que hay muchos ficheros, sería buena idea organizar un poco, vamos a crear dos carpetas:
 - _components_: donde meteremos los componentes que no son contenedores.

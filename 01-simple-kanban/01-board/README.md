@@ -8,7 +8,7 @@ This example takes the _00-boilerplate_ as a starting point, you can copy it to 
 
 In this step we will implement a simple static kanban board:
 
-![Kanban board with three columns, backlog, doing, and done, and each column includes cards](./public/01-board-01.jpg)
+![Kanban board with three columns: backlog, doing and done, and each column includes cards](./public/01-board-01.jpg)
 
 ## Data model and api
 
@@ -110,7 +110,7 @@ It is time to create a mock api to load the data (we will add some mock data), t
 
 - We will define the _mock_ data in a separate file, so it is easier to delete and we don't add extra noise to the codebase.
 
-At the moment both api and _mock_ are going to be defined inside the _kanban_ component, in the final implementation we will probably take it out of the folder (it will be directly in the application page that request the data to a server, we will pass the results to _mapper_ and will convert from specific app entities to my kanban entities), but we are not going to get involved into this right now, better not to add more elements into the equation and raise the complexity right now, let's focus on solving issues step by step: first we crawl, then walk and finally run. (remider: it's important that this project is an _spike_ and we will have 2/3 with to play with it without pressure)
+At the moment both api and _mock_ are going to be defined inside the _kanban_ component, in the final implementation we will probably take it out of the folder (it will be directly in the application page that request the data to a server, we will pass the results to _mapper_ and will convert from specific app entities to my kanban entities), but we are not going to get involved into this right now, better not to add more elements into the equation and raise the complexity right now, let's focus on solving issues step by step: first we crawl, then walk and finally run. (reminder: it's important that this project is an _spike_ and we will have 2/3 weeks to play with it without pressure)
 
 The _mock_ data:
 
@@ -240,7 +240,7 @@ Take into account that:
 
 - The same happens with colors, theming..., we will start very simple, and later on we could just expose some theming api or whatever suits the best.
 
-If you may have noticed, there are a lot of decisions that could add unnecesary noise to our proof of concept, our goal as software developers / architects is to delay all decisions that are not essential and focus on the core of our POC (altough is a good idea to note down everything that comes along the way, just to take account later once the POC core is done also to tell pending stuff in _spkie_ demo and add it to _user story_ of real implementation. Could be very dangerous to show a demo where everything is functional and a non-technical could think everything is already done).
+If you may have noticed, there are a lot of decisions that could add unnecesary noise to our proof of concept, our goal as software developers / architects is to delay all decisions that are not essential and focus on the core of our POC (altough is a good idea to note down everything that comes along the way, just to take account later once the POC core is done also to tell pending stuff in _spike_ demo and add it to _user story_ of real implementation. Could be very dangerous to show a demo where everything is functional and a non-technical could think everything is already done).
 
 Let's define the container component:
 
