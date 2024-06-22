@@ -4,7 +4,7 @@ Vamos a crear un ejemplo simple de Kanban, el objetivo de este ejemplo es el de 
 
 En este ejemplo vamos a implementar un tablero kanban simple:
 
-![Kanban board with three columns, backlog, doing, and done, and each column includes cards](./public/01-board.jpg)
+![Tablero de Kanban con tres columnas: backlog, doing y done. Cada columna incluye cards](./public/01-board-01.jpg)
 
 # Paso a paso
 
@@ -203,7 +203,7 @@ export const loadKanbanContent = async (): Promise<KanbanContent> => {
 
 - Ayudamos a evitar que el componente se vuelva un monstruo: el típico fichero con 5000 lineas de código, con un _sphaguetti_.
 
-- Al aislar código en fichero TS ya sabemos que no es dependiente de React y un compañero que no sepa React puede trabajar en esa parte sin problemas.
+- Al aislar código en fichero TS ya sabemos que no es dependiente de React y un compañero que no sepa React puede trabajar en esa parte sin problemas o reutilizarlo en una aplicación de servidor para `Node.js` o un aplicación de `Vue` etc...
 
 - Es más fácil de testear, tenemos piezas que hacen una cosa y una sola cosa.
 
@@ -314,6 +314,8 @@ export const App = () => {
 
 Es hora de probar que esto funciona (se ve un rectángulo con tres títulos)... parece poca cosa pero con menos código he metido fallos grandes :), de hecho primer patón, no ocupa toda la pantalla el kanban, pero esto es más problema de aplicación, el _body_ es un contenedor flex ,y tenemos que decirle al _div_ root que ocupe todo el espacio que pueda (podemos ponerle un _flex_ a 1), para esto podemos jugar con las dev tools.
 
+![Componente de Kanban sin ocupar todo el ancho](./public/01-board-02.jpg)
+
 Vamos a cambiarlo en la hoja de estilos.
 
 _./app.css_
@@ -336,6 +338,8 @@ npm run dev
 
 ✅ Somos capaces de mostrar un contenedor vacio...
 
+![Componente de Kanban tomando todo el espacio horizontal](./public/01-board-03.jpg)
+
 Vamos a definir el componente de columnas:
 
 - Vamos a por el estilado.
@@ -347,7 +351,7 @@ Sobre el estilado:
 
 - Para la prueba va a tener un ancho fijo (apuntar martillo fino para después si añadir media queries para poner un ancho relativo o por porcentajes).
 
-- Le pondremos _overflow_ por si hubiera más _cards_ que espacio en la columna (martillo fino todo, resolver esto cuando se integre en real)
+- Le pondremos _overflow_ (por si hubiera más _cards_ que espacio en la columna ahora mismo el overflow será hidden, pero podríamos configurarlo con scroll behaviour)
 
 - Le añadimos un color de fondo a cada columna (TODO martillo fino aquí, o bien en la aplicación real usar los colores que vengan, o bien exponer una API de CSS / tematizado o mediante variables HTML).
 
@@ -400,6 +404,8 @@ export const Column: React.FC<Props> = (props) => {
 
 > Pregunta aquí... ¿Merecería la pena exponer la columna en el barrel?
 
+> Para simplificar el ejemplo, no se van a añadir test unitarios ni de componentes, pero si empezamos a trabajar en un proyecto real debemos añadirlos.
+
 - Ya nos falta tiempo para probarlo :), vamos a integrarlo en nuestro contenedor de _Kanban_:
 
 _./src/kanban/kanban.container.tsx_
@@ -436,6 +442,8 @@ npm run dev
 ```
 
 ✅ Somos capaces de mostrar las columnas del _kanban_...
+
+![Componente de Kanban mostrando column content](./public/01-board-04.jpg)
 
 Esto empieza a tener buena pinta, ahora vamos a por el componente de _card_:
 
@@ -508,6 +516,8 @@ npm run dev
 
 ✅ Somos capaces de mostrar las _cards_...
 
+![Componente de Kanban mostrando columnas y cards](./public/01-board-05.jpg)
+
 - Ya tenemos nuestro tablero montado, es hora de ver cómo va quedando nuestra carpeta _kanban_ parece que hay muchos ficheros, sería buena idea organizar un poco, vamos a crear dos carpetas:
 - _components_: donde meteremos los componentes que no son contenedores.
 - _api_: donde meteremos los ficheros que se encargan de la comunicación
@@ -521,8 +531,6 @@ _./src/kanban/components/index.ts_
 export * from "./card";
 export * from "./column";
 ```
-
-> Hay que crear los barrer para la subcarpeta card y column
 
 _./src/kanban/api/index.ts_
 

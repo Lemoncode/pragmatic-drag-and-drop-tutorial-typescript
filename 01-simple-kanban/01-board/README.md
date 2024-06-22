@@ -8,7 +8,7 @@ This example takes the _00-boilerplate_ as a starting point, you can copy it to 
 
 In this step we will implement a simple static kanban board:
 
-![Kanban board with three columns, backlog, doing, and done, and each column includes cards](./public/01-board.jpg)
+![Kanban board with three columns: backlog, doing and done, and each column includes cards](./public/01-board-01.jpg)
 
 ## Data model and api
 
@@ -108,9 +108,9 @@ It is time to create a mock api to load the data (we will add some mock data), t
 
 - The api must have the same signature as if we were loading data from an _REST API_ (async and promises), so when we replace the _mock_ with real data we are only going to have to make the updates in the API.
 
-- The _mock_ data we will define it in a separate file, so it is easier to delete and we don't add extra noise to the codebase.
+- We will define the _mock_ data in a separate file, so it is easier to delete and we don't add extra noise to the codebase.
 
-At the moment both api and _mock_ are going to be defined inside the _kanban_ component, in the final implementation we will probably take it out of the folder (it will be directly in the application page that request the data to a server, we will pass the results to _mapper_ and will convert from specific app entities to my kanban entities), but we are not going to get involved into this right now, better not to add more elements into the equation and raise the complexity right now, let's focus on solving issues step by step: first we crawl, then walk and finally run.
+At the moment both api and _mock_ are going to be defined inside the _kanban_ component, in the final implementation we will probably take it out of the folder (it will be directly in the application page that request the data to a server, we will pass the results to _mapper_ and will convert from specific app entities to my kanban entities), but we are not going to get involved into this right now, better not to add more elements into the equation and raise the complexity right now, let's focus on solving issues step by step: first we crawl, then walk and finally run. (reminder: it's important that this project is an _spike_ and we will have 2/3 weeks to play with it without pressure)
 
 The _mock_ data:
 
@@ -215,7 +215,7 @@ The container div:
 - It's going to be a flexbox.
 - It takes up all the available space.
 - The columns will be shown from left to right, leaving a gap between them.
-- We also add an overflow (if there were more cards than space in the column right now the overflow will be hidden but we could configure e.g. scroll behavior),
+- We also add an _overflow hidden_ (if there were more cards than space in the column right now the overflow will be hidden but we could configure e.g. scroll behavior),
 
 _./src/kanban/kanban.container.module.css_
 
@@ -240,7 +240,7 @@ Take into account that:
 
 - The same happens with colors, theming..., we will start very simple, and later on we could just expose some theming api or whatever suits the best.
 
-If you may have noticed, there are a lot of decisions that could add unnecesary noise to our proof of concept, our goal as software developers / architects is to delay all decisions that are not essential and focus on the core of our POC (altough is a good idea to note down everything that comes along the way, just to take account later once the POC core is done).
+If you may have noticed, there are a lot of decisions that could add unnecesary noise to our proof of concept, our goal as software developers / architects is to delay all decisions that are not essential and focus on the core of our POC (altough is a good idea to note down everything that comes along the way, just to take account later once the POC core is done also to tell pending stuff in _spike_ demo and add it to _user story_ of real implementation. Could be very dangerous to show a demo where everything is functional and a non-technical could think everything is already done).
 
 Let's define the container component:
 
@@ -305,6 +305,8 @@ export const App = () => {
 
 It's time to test that this works (you will see a rectangle with three titles)... it seems like a small thing but with less code I have committed bigger mistakes :), in fact first issue... the kanban does not take up the entire screen, but this is more an application lelve issue, the main `html` _body_ is a flex container, and we have to tell the root _div_ to take up all the space available (we can set a _flex_ to 1), you can play bit with the devtools and check results.
 
+![Kanban component without taking all horizontal space](./public/01-board-02.jpg)
+
 Let's change it in the style sheet.
 
 _./app.css_
@@ -327,6 +329,8 @@ npm run dev
 
 ✅ We are able to show an empty container...
 
+![Kanban component taking horizontal space](./public/01-board-03.jpg)
+
 Let's define the columns component:
 
 - Let's go for the styling.
@@ -338,7 +342,7 @@ About the style:
 
 - For the sake of simplicity it will have a fixed width (add a big TODO here, just to enhance this in the future, and for instance include some _media queries_ and different card sizes, depending on the screen size).
 
-- We will add _overflow_ in case there are more _cards_ than space in the column (one more big TODO, just to cover it later on).
+- We will add _overflow_ (in case there are more _cards_ than space in the column, right now overflow is going to be hidden but we could change to scroll behaviour in future).
 
 - We add a background color to each column (one more TODO, in the future this colors should come from some theming or API).
 
@@ -389,6 +393,8 @@ export const Column: React.FC<Props> = (props) => {
 };
 ```
 
+> Question: Should we include this component in the barrel file?
+
 > For the sake of simplicity and taking into account that this is an spike we won't add unit testing or component testing, but if we start working in the real codebase we should add all the proper testing.
 
 - Let's integrate it into our _Kanban_ container:
@@ -426,7 +432,9 @@ import classes from "./container.css";
 npm run dev
 ```
 
-✅ We are able to show the _kanban_ columns...
+✅ We are able to show the _kanban_ columns..
+
+![Kanban component showing column content](./public/01-board-04.jpg).
 
 Things start to look god, now let's go for the _card_ component:
 
@@ -498,6 +506,8 @@ npm run dev
 ```
 
 ✅ We are able to show the _cards_...
+
+![Kanban component showing column and cards](./public/01-board-05.jpg)
 
 - We already have our board set up, it's time to see how our _kanban_ folder is looking. It seems that there are many files, it would be a good idea to organize this a little bit, let's create two subfolders:
 

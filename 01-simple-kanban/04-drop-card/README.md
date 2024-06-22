@@ -2,7 +2,7 @@
 
 Let's implement the drop area in the cards so we can drop cards between them..
 
-![Drop the card in between cards](./public/04-drop-card.gif)
+![Drop the card in between cards](./public/04-drop-card-01.gif)
 
 ## Step by Step
 
@@ -262,6 +262,8 @@ npm run dev
 ```
 
 It seems to work, but there's an edge case not working: if we drop the card at the bottom of the column, we can see that the drop is not performed. What's happening here? Well, there's no drop zone there. We fix this by creating a kind of empty card at the bottom of the column that occupies all the empty space.
+
+![Error when drop card at the bottom of the column](./public/04-drop-card-02.gif)
 
 Let's do something, we fill that div with a give a color so it's temporary distinguishable, once we see it in action, we'll apply a transparent color.
 
